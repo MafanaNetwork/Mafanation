@@ -29,13 +29,13 @@ public class OutLayer implements Listener {
         LootItem Bow = new LootItem(BabyBumBow.getBabyBumBow(player), 1, 1, 5);
         LootItem helm = new LootItem(BabyCleanHelmet.getBabyCleanHelmet(player), 1);
         CreateMob babySkeleton = new CreateMob(ChatColor.AQUA + "BabySkeleton", 100, EntityType.SKELETON, 45, 10,
-                15, 10, 0, BabyBumBow.getBabyBumBow(player), BabyCleanHelmet.BabyArmor(player), Bow,  helm);
+                15, 10, 0, BabyBumBow.getBabyBumBow(player), BabyCleanHelmet.BabyArmor(player), Bow, helm);
         return babySkeleton;
     }
 
     public CreateMob FermentedSpider(Player player) {
         LootItem silk = new LootItem(CompressedSilk.getCompressedSilk(), 1, 2, 25);
-        CreateMob fermentedSpider  = new CreateMob(ChatColor.GOLD + "FermentedSpider", 100, EntityType.SPIDER, 20, 45, 35, 50, 0, null, null, silk);
+        CreateMob fermentedSpider = new CreateMob(ChatColor.GOLD + "FermentedSpider", 100, EntityType.SPIDER, 20, 45, 35, 50, 0, null, null, silk);
         return fermentedSpider;
     }
 
@@ -88,7 +88,6 @@ public class OutLayer implements Listener {
     }
 
      */
-
 
 
 }

@@ -53,7 +53,8 @@ public class NBTUtils {
     }
 
     public static String getEntityString(Entity entity, String key) {
-        return new NBTEntity(entity).getString(key);
+        NBTCompound nbt = new NBTEntity(entity).getPersistentDataContainer();
+        return nbt.getString(key);
     }
 
 

@@ -1,5 +1,10 @@
 package me.TahaCheji.Mafana.mobData;
 
+import de.tr7zw.nbtapi.NBTCompound;
+import de.tr7zw.nbtapi.NBTEntity;
+import me.TahaCheji.Mafana.utils.NBTUtils;
+import net.minecraft.server.v1_16_R2.EntityMonster;
+import org.bukkit.craftbukkit.v1_16_R2.entity.CraftEntity;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -20,12 +25,16 @@ public class DropLoot implements Listener {
         if(entity.getCustomName() == null) {
             return;
         }
-            if (!(entity.getCustomName()).contains(mob.getName())) {
-                System.out.println(mob.getName());
-                return;
-            }
-            mob.tryDropLoot(entity.getLocation());
+        NBTCompound nbt = new NBTEntity(entity).getPersistentDataContainer();
+        if(!(nbt.hasKey("MobName"))) {
+            return;
         }
+        if(!(NBTUtils.getEntityString(entity, "MobName").equalsIgnoreCase(mob.getName()))) {
+            return;
+        }
+            mob.tryDropLoot(entity.getLocation());
+    }
+
 
 
 }

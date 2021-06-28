@@ -36,41 +36,41 @@ public class MeshOfSilk implements Listener {
     public void onRightClick(PlayerInteractEvent e) {
         ItemStack itemStack = e.getItem();
         Player player = e.getPlayer();
-        if(e.getItem() == null) {
+        if (e.getItem() == null) {
             return;
         }
-        if(e.getItem().getItemMeta() == null) {
+        if (e.getItem().getItemMeta() == null) {
             return;
         }
-        if(e.getItem().getItemMeta().getDisplayName() == null) {
+        if (e.getItem().getItemMeta().getDisplayName() == null) {
             return;
         }
-        if(!(player.getItemInHand().getItemMeta().getDisplayName().contains("MeshOfSilk"))) {
+        if (!(player.getItemInHand().getItemMeta().getDisplayName().contains("MeshOfSilk"))) {
             return;
         }
-        for(Entity entity : player.getNearbyEntities(5, 5, 5)) {
+        for (Entity entity : player.getNearbyEntities(5, 5, 5)) {
             Location location = entity.getLocation();
             PlayerStats pS = PlayerStats.playerStats.get(player.getUniqueId());
-            if(pS.getCurrentIntelligence() < 75) {
+            if (pS.getCurrentIntelligence() < 75) {
                 e.setCancelled(true);
                 player.sendMessage(ChatColor.RED + "You don't have enough mana!");
                 return;
             }
-            pS.setCurrentIntelligence(pS.getCurrentIntelligence()-75);
-           Block block = location.getBlock();
-           block.setType(Material.COBWEB);
-          Block block2 =  location.add(0, 1, 0).getBlock();
-          block2.setType(Material.COBWEB);
+            pS.setCurrentIntelligence(pS.getCurrentIntelligence() - 75);
+            Block block = location.getBlock();
+            block.setType(Material.COBWEB);
+            Block block2 = location.add(0, 1, 0).getBlock();
+            block2.setType(Material.COBWEB);
             player.playSound(player.getLocation(), Sound.BLOCK_SLIME_BLOCK_PLACE, 10, 10);
-                Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new Runnable() {
-                    @Override
-                    public void run() {
-                        block2.setType(Material.AIR);
-                        block.setType(Material.AIR);
-                        player.playSound(player.getLocation(), Sound.BLOCK_STONE_BREAK, 10, 10);
-                    }
-                }, 100L);
-            }
+            Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new Runnable() {
+                @Override
+                public void run() {
+                    block2.setType(Material.AIR);
+                    block.setType(Material.AIR);
+                    player.playSound(player.getLocation(), Sound.BLOCK_STONE_BREAK, 10, 10);
+                }
+            }, 100L);
         }
-
     }
+
+}

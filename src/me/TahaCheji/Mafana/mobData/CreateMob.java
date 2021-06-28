@@ -1,5 +1,6 @@
 package me.TahaCheji.Mafana.mobData;
 
+import me.TahaCheji.Mafana.utils.NBTUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.attribute.Attribute;
@@ -61,6 +62,7 @@ public class CreateMob {
         inv.setBootsDropChance(0f);
         inv.setItemInMainHand(mainItem);
         inv.setItemInMainHandDropChance(0f);
+        NBTUtils.setEntityString(entity, "MobName", name);
         return entity;
     }
 

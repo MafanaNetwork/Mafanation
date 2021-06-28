@@ -26,26 +26,9 @@ public class CustomMagicMob extends EntityMonster {
     private int defense;
     private int damage;
     private int speed;
-    private List<PathfinderGoal> goals;
     private ItemStack mainItem;
     private ItemStack[] armor;
     private List<LootItem> lootTable;
-
-
-    public void CustomMagicMob(String name, double spawnChance, EntityTypes type, double maxHealth, int strength, int defense, int damage, int speed,
-                     ItemStack mainItem, ItemStack[] armor, LootItem... lootItems) {
-        this.name = name;
-        this.spawnChance = spawnChance;
-        this.maxHealth = maxHealth;
-        this.type = type;
-        this.strength = strength;
-        this.defense = defense;
-        this.damage = damage;
-        this.speed = speed;
-        this.mainItem = mainItem;
-        this.armor = armor;
-        lootTable = Arrays.asList(lootItems);
-    }
 
     public CustomMagicMob (Location loc) {
         super(type, ((CraftWorld) loc.getWorld()).getHandle());
@@ -76,18 +59,50 @@ public class CustomMagicMob extends EntityMonster {
         inv.setItemInMainHand(mainItem);
         inv.setItemInMainHandDropChance(0f);
 
-        this.initPathfinder();
-
     }
 
-    @Override
-    public void initPathfinder() {
-        this.goalSelector.a(0, new PathfinderGoalFloat(this));
-        this.goalSelector.a(4, new PathfinderGoalMeleeAttack(this, speed, true));
-        for(PathfinderGoal goal : goals) {
-            this.goalSelector.a(8, goal);
+    public void tryDropLoot(Location location) {
+        for (LootItem item : lootTable) {
+            item.tryDropItem(location);
         }
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public double getSpawnChance() {
+        return spawnChance;
+    }
+
+    public EntityTypes getType() {
+        return type;
+    }
+
+    public int getStrength() {
+        return strength;
+    }
+
+    public int getDefense() {
+        return defense;
+    }
+
+    public int getDamage() {
+        return damage;
+    }
+
+    public int getSpeed() {
+        return speed;
+    }
+
+    public ItemStack getMainItem() {
+        return mainItem;
+    }
+
+    public ItemStack[] getArmor() {
+        return armor;
+    }
+
 
 
 

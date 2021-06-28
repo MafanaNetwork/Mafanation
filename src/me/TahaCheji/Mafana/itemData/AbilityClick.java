@@ -9,16 +9,16 @@ public class AbilityClick implements Listener {
 
     public void rightClick(PlayerInteractEvent e, ItemStack itemStack) {
         Player player = e.getPlayer();
-        if(e.getItem() == null) {
+        if (e.getItem() == null) {
             return;
         }
-        if(e.getItem().getItemMeta() == null) {
+        if (e.getItem().getItemMeta() == null) {
             return;
         }
-        if(e.getItem().getItemMeta().getDisplayName() == null) {
+        if (e.getItem().getItemMeta().getDisplayName() == null) {
             return;
         }
-        if(!(player.getItemInHand().getItemMeta().getDisplayName().contains(itemStack.getItemMeta().getDisplayName()))) {
+        if (!(player.getItemInHand().getItemMeta().getDisplayName().contains(itemStack.getItemMeta().getDisplayName()))) {
             return;
         }
     }
