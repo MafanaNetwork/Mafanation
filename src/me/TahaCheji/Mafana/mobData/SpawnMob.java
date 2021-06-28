@@ -4,14 +4,11 @@ import com.google.common.base.Preconditions;
 import me.TahaCheji.Mafana.Main;
 import net.minecraft.server.v1_16_R2.WorldServer;
 import org.bukkit.Location;
-import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.craftbukkit.v1_16_R2.CraftWorld;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 
@@ -58,10 +55,10 @@ public class SpawnMob implements Listener {
         return null;
     }
 
-    public SpawnMob spawnMagicMobs(int mobCap, int spawnTime, Location radius1, Location radius2, CustomMagicMob... createMob) {
+    public SpawnMob spawnMagicMobs(int mobCap, int spawnTime, Location radius1, Location radius2, CreateMagicMob... createMob) {
                     Location location = getRandomLocation(radius1, radius2);
                     WorldServer worldServer = ((CraftWorld)location.getWorld()).getHandle();
-                    CustomMagicMob mob = new CustomMagicMob(location);
+                    CreateMagicMob mob = new CreateMagicMob(location);
                     worldServer.addEntity(mob);
                return null;
     }

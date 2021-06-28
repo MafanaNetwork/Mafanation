@@ -1,5 +1,6 @@
 package me.TahaCheji.Mafana.mobData;
 
+import me.TahaCheji.Mafana.utils.NBTUtils;
 import net.minecraft.server.v1_16_R2.*;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -17,20 +18,36 @@ import org.bukkit.inventory.ItemStack;
 import java.util.Arrays;
 import java.util.List;
 
-public class CustomMagicMob extends EntityMonster {
+public class CreateMagicMob extends EntityMonster {
     private String name;
     private double spawnChance;
-    private double maxHealth;
     private static EntityTypes type;
+    private double maxHealth;
     private int strength;
     private int defense;
     private int damage;
     private int speed;
     private ItemStack mainItem;
     private ItemStack[] armor;
+    private PathfinderGoal goals;
     private List<LootItem> lootTable;
 
-    public CustomMagicMob (Location loc) {
+    public CreateMagicMob(EntityTypes<? extends EntityMonster> entity, World world, String name, double spawnChance, double maxHealth, int strength, int defense, int damage, int speed, ItemStack mainItem, ItemStack[] armor, PathfinderGoal goals, List<LootItem> lootTable) {
+        super(entity, world);
+        this.name = name;
+        this.spawnChance = spawnChance;
+        this.maxHealth = maxHealth;
+        this.strength = strength;
+        this.defense = defense;
+        this.damage = damage;
+        this.speed = speed;
+        this.mainItem = mainItem;
+        this.armor = armor;
+        this.goals = goals;
+        this.lootTable = lootTable;
+    }
+
+    public CreateMagicMob(Location loc) {
         super(type, ((CraftWorld) loc.getWorld()).getHandle());
 
         this.setPosition(loc.getX(), loc.getY(), loc.getZ());
@@ -58,7 +75,7 @@ public class CustomMagicMob extends EntityMonster {
         inv.setBootsDropChance(0f);
         inv.setItemInMainHand(mainItem);
         inv.setItemInMainHandDropChance(0f);
-
+        NBTUtils.setEntityString(this.getBukkitEntity(), "MobName", name);
     }
 
     public void tryDropLoot(Location location) {
