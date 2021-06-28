@@ -1,0 +1,25 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Mafanation:jar">
+    <output-path>$USER_HOME$/Desktop/Test Server - Copy/plugins</output-path>
+    <root id="archive" name="Mafanation.jar">
+      <element id="module-output" name="Mafanation" />
+      <element id="extracted-dir" path="$USER_HOME$/Desktop/Test Server - Copy/plugins/Quests-4.0.0-rc.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Desktop/Test Server - Copy/plugins/MythicMobs-4.11.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Desktop/Test Server - Copy/plugins/PlaceholderAPI-2.10.9.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Downloads/spigot-1.16.3.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Desktop/Test Server - Copy/plugins/item-nbt-api-plugin-2.7.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Desktop/Test Server - Copy/plugins/Citizens-2.0.27-b2129.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Desktop/Test Server - Copy/plugins/HolographicDisplays (4).jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Desktop/Test Server - Copy/plugins/Vault (2).jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Desktop/Test Server - Copy/plugins/Seasons.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Desktop/Test Server - Copy/plugins/EssentialsChat-2.x-SNAPSHOT.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Desktop/Test Server - Copy/plugins/SimplePets-1.16.3.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Downloads/BungeeCord.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Desktop/Test Server - Copy/plugins/Sentinel-2.2.6-SNAPSHOT-b408.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Desktop/Test Server - Copy/plugins/ProtocolLib (1).jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Desktop/Test Server - Copy/plugins/worldedit-bukkit-7.2.0-beta-05.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Desktop/Test Server - Copy/plugins/ActionBarAPI (1).jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Desktop/Test Server - Copy/plugins/worldguard-bukkit-7.0.4 (1).jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

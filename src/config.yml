@@ -1,0 +1,85 @@
+no_player: '&c&lYou are not a player'
+no_permission: '&cYou do not have the permission to do that'
+inventory_full: '&c&lYour inventory is full!'
+base_mana: 100
+base_health: 100
+base_strength: 10
+base_speed: 100
+
+enable-damage-indicator: true
+actionbar:
+  # %cur_health% = players current health
+  # %max_health% = players max health
+  # %cur_mana% = players current mana
+  # %max_mana% = players max mana
+  # %cur_strength% = players current strength
+  # %cur_speed% = players current speed
+  enabled: true
+  msg: '&5⚔ Strength: &d%cur_strength%   &4♥ Health: &c%cur_health%/%max_health%   &9✎ Mana: &b%cur_mana%/%max_mana%   &3♤ Speed: &b%cur_speed%'
+enchantments:
+lobby-point:
+  x: 0
+  y: 64
+  z: 0
+  world: "world"
+
+host: localhost
+port: 3306
+database: server
+username: root
+password: tc262could984
+table: player_data
+
+#CloudTrade Config
+PluginEnabled: true
+
+#set to 0 for unlimited range.
+max-distance: 10
+
+#must also set max distance to 0 to trade from different worlds
+tradeFromDifferentWorlds: false
+shift-right-click: true
+sprint-click: true
+useCommandsForTrading: true
+displayItemsAfterTrade: true
+bothPlayersMustHavePermissions: false
+tradeAcceptTimeout: 15
+logAllTrades: true
+
+multiplier:
+  xp: 1.1
+use:
+  owner-binding: true
+permission:
+  give-paper: "LevellingTools.givepaper"
+  reload-config: "LevellingTools.reloadconfig"
+  fix: "LevellingTools.fix"
+  iteminfo: "LevellingTools.iteminfo"
+  clearowner: "LevellingTools.clearowner"
+  setowner: "LevellingTools.setowner"
+language:
+  no-permission: "&7Sorry, but you don't have &cpermission &7to do that!"
+  console-cannot-execute-command: "&7The console &ccannot execute &7this command."
+  config-reloaded: "&7The configuration has been &creloaded&7."
+  givepaper-usage: "&7Please use &c/givepaper <player> <amount>&7!"
+  givepaper-success: "&7You've got a &5magic paper&7!"
+  paper-name: "&5Magic&7-&5Paper"
+  fix-not-able: "&7This item &ccannot &7be fixed."
+  fix-already-fixed: "&7This item is &calready fixed&7."
+  fix-fixed: "&7Your item has been &afixed&7."
+  iteminfo-no-info-available: "&7Sorry, but there is &cno information &7about this item available."
+  setowner-usage: "&7Please use &c/setowner <player>&7!"
+  setowner-invalid-item: "&7Your item is &cinvalid&7!"
+  setowner-disabled: "&7Owner bindings are on this server &cdisabled&7."
+  setowner-no-owner: "&7Sorry, but you aren't the &cowner &7of this item!"
+  setowner-set-owner: "&7Item owner has been set to &c%player&7."
+  clearowner-reset: "&7The item owner has been &ccleared&7."
+  levelup-message: "&7Your tool levelled up to level &c%level&7!"
+console-command-milestones:
+  '1': "say &c%player's &7MafanaLeveling reached level 1!"
+lore-milestones:
+  '1': "&7Noob-Level"
+  '2': "&6Expert-Level"
+  '3': "&bPro-Level"
+  '4': "&5Dragonslayer-Level"
+  '5': "&eGod-Level"
