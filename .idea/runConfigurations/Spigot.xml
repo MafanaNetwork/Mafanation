@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Spigot" type="JarApplication">
+    <option name="JAR_PATH" value="$USER_HOME$/Desktop/Test Server - Copy/paper.jar" />
+    <option name="WORKING_DIRECTORY" value="C:\Users\tahac\Desktop\Test Server - Copy" />
+    <option name="ALTERNATIVE_JRE_PATH" />
+    <module name="Mafanation" />
+    <method v="2" />
+  </configuration>
+</component>

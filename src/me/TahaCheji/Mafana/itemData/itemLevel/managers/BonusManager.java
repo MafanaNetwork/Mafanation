@@ -1,4 +1,4 @@
-package me.TahaCheji.Mafana.itemLevel.managers;
+package me.TahaCheji.Mafana.itemData.itemLevel.managers;
 
 import me.TahaCheji.Mafana.utils.MessageUtil;
 import net.md_5.bungee.api.ChatMessageType;

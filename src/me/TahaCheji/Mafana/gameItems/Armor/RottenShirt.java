@@ -27,11 +27,11 @@ public class RottenShirt {
         lore.add("");
         lore.add("§7XP §f" + (double) 0 + " §7/ §f" + (double) 10);
         lore.add("§7Level §f" + (double) 0);
-        if(me.TahaCheji.Mafana.itemLevel.managers.ConfigManager.getBoolean("use.owner-binding")) {
+        if(me.TahaCheji.Mafana.itemData.itemLevel.managers.ConfigManager.getBoolean("use.owner-binding")) {
             lore.add("§c" + player.getName());
         }
         lore.add("");
-        lore.add(me.TahaCheji.Mafana.itemLevel.managers.MilestoneManager.getLoreMilestone(player, itemStack));
+        lore.add(me.TahaCheji.Mafana.itemData.itemLevel.managers.MilestoneManager.getLoreMilestone(player, itemStack));
             lore.add(ChatColor.translateAlternateColorCodes('&', "&dStrength: &c+50"));
 
             lore.add(ChatColor.translateAlternateColorCodes('&', "&cHealth: &c+100 HP"));

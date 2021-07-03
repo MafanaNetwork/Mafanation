@@ -8,10 +8,7 @@ import me.TahaCheji.Mafana.gameItems.Armor.RottenShirt;
 import me.TahaCheji.Mafana.gameItems.Armor.RottenShoes;
 import me.TahaCheji.Mafana.gameItems.Spell.MeshOfSilk;
 import me.TahaCheji.Mafana.gameItems.Weapons.*;
-import me.TahaCheji.Mafana.gameItems.items.BlockOfLife;
-import me.TahaCheji.Mafana.gameItems.items.BoneShard;
-import me.TahaCheji.Mafana.gameItems.items.MagicCookie;
-import me.TahaCheji.Mafana.gameItems.items.MidasStand;
+import me.TahaCheji.Mafana.gameItems.items.*;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -76,8 +73,9 @@ public class ItemsGui implements InventoryHolder {
         WeaponGUI.setItem(34, RottenSword.RottenStick(player));
         WeaponGUI.setItem(37, BoneShard.BoneShard());
         WeaponGUI.setItem(38, PointyBone.pointyBone(player));
-        WeaponGUI.setItem(39, new MeshOfSilk().getMeshOfSilk(player));
-        WeaponGUI.setItem(41, new DeformedBone().getDeformedBone(player));
+        WeaponGUI.setItem(39, RestoredCristal.getRestoredCristal());
+        WeaponGUI.setItem(41, ProspectorTorch.getProspectorTorch());
+        WeaponGUI.setItem(42, CollierStick.getCollierStick());
     }
 
     @Override

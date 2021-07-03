@@ -20,9 +20,8 @@ public class Jumpers_Glock implements Listener {
 
 
     public static ItemStack Jumpers_Glock(Player player) {
-        ItemStack jumpers_glock = ItemUtl.createItem(Material.DIAMOND_SHOVEL, 1, ItemType.SWORD, player, true, true, RarityType.COAL,
+        return ItemUtl.createItem(Material.DIAMOND_SHOVEL, 1, ItemType.SWORD, player, true, true, RarityType.COAL,
                 "Jumpers Glock", 480, 0, 250, 100, "Shoots horses that explode on impact", ClickType.RIGHT_CLICK, true, true, 150, null,"Jumper has spoken");
-        return jumpers_glock;
     }
 
     @EventHandler
@@ -94,6 +93,7 @@ public class Jumpers_Glock implements Listener {
             return;
         }
         LivingEntity entity = (LivingEntity) e.getEntity();
+        if(entity.getCustomName() == null) return;
         if(!(entity.getCustomName().contains("Ex-Horse"))) {
             return;
         }

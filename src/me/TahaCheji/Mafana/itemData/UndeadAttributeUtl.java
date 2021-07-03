@@ -3,6 +3,7 @@ package me.TahaCheji.Mafana.itemData;
 import com.codingforcookies.armorequip.ArmorEquipEvent;
 import de.tr7zw.nbtapi.NBTItem;
 import me.TahaCheji.Mafana.Main;
+import me.TahaCheji.Mafana.itemData.itemLevel.managers.ItemManager;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
@@ -35,7 +36,10 @@ public class UndeadAttributeUtl implements Listener {
         if(!(e.getEntity() instanceof Zombie)) {
             return;
         }
-        if(getUndeadAttribute(itemStack, "UndeadAttribute") != 0) {
+       if(!(ItemManager.isSword(itemStack))) {
+           return;
+       }
+        if(new NBTItem(itemStack).hasKey("UndeadAttribute")) {
             double damage = e.getDamage();
             double newDamage = damage * getUndeadAttribute(itemStack, "UndeadAttribute") / 100;
             e.setDamage(damage + newDamage);

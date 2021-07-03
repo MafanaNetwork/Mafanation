@@ -49,6 +49,7 @@ public class GuiInvClicks implements Listener {
         }
     }
 
+
     @EventHandler
     public void rightClickPlayer(PlayerInteractAtEntityEvent e) {
         Player player = e.getPlayer();

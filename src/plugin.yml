@@ -14,7 +14,7 @@ commands:
   SkeletonSword:
   ItemsGui:
   reboot:
-  Vote:
+  CraftingTable:
   trade:
   Armor:
   resetStats:

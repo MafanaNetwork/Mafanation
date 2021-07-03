@@ -29,7 +29,7 @@ public class MeshOfSilk implements Listener {
     }
 
     public void getMeshOfSilkRecipe(Player player, Inventory gui) {
-        CraftingUtl.createRecipe(CompressedSilk.getCompressedSilk(), 1, CompressedSilk.getCompressedSilk(), 1, CompressedSilk.getCompressedSilk(), 1, CompressedSilk.getCompressedSilk(), 1, CompressedSilk.getCompressedSilk(), 1, CompressedSilk.getCompressedSilk(), 1, CompressedSilk.getCompressedSilk(), 1, CompressedSilk.getCompressedSilk(), 1, CompressedSilk.getCompressedSilk(), 1, player, getMeshOfSilk(player), gui);
+       new CraftingUtl().createRecipe(CompressedSilk.getCompressedSilk(), 1, CompressedSilk.getCompressedSilk(), 1, CompressedSilk.getCompressedSilk(), 1, CompressedSilk.getCompressedSilk(), 1, CompressedSilk.getCompressedSilk(), 1, CompressedSilk.getCompressedSilk(), 1, CompressedSilk.getCompressedSilk(), 1, CompressedSilk.getCompressedSilk(), 1, CompressedSilk.getCompressedSilk(), 1, player, getMeshOfSilk(player), gui);
     }
 
     @EventHandler

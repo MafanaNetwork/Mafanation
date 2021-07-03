@@ -24,7 +24,7 @@ public class CreateMob {
     private int speed;
     private ItemStack mainItem;
     private ItemStack[] armor;
-    private List<LootItem> lootTable;
+    private final List<LootItem> lootTable;
 
      public CreateMob(String name, double spawnChance, EntityType type, double maxHealth, int strength, int defense, int damage, int speed,
                       ItemStack mainItem, ItemStack[] armor, LootItem... lootItems) {

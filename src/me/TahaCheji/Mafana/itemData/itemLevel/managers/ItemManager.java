@@ -1,5 +1,6 @@
-package me.TahaCheji.Mafana.itemLevel.managers;
+package me.TahaCheji.Mafana.itemData.itemLevel.managers;
 
+import de.tr7zw.nbtapi.NBTItem;
 import me.TahaCheji.Mafana.utils.NBTUtils;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -7,10 +8,7 @@ import org.bukkit.inventory.ItemStack;
 public class ItemManager {
 
     public static boolean isSword(ItemStack is) {
-        if(is == null || is.getType() == Material.AIR) {
-            return false;
-        }
-        if(is != null) {
+        if(is != null && !(is.getType() == Material.AIR) && new NBTItem(is).hasNBTData()) {
             return NBTUtils.getString(is, "ItemType").contains("Sword");
         } else {
             return false;
@@ -18,7 +16,7 @@ public class ItemManager {
     }
 
     public static boolean isShovel(ItemStack is) {
-        if(is != null) {
+        if(is != null && !(is.getType() == Material.AIR) && new NBTItem(is).hasNBTData()) {
             return NBTUtils.getString(is, "ItemType").contains("Tool");
         } else {
             return false;
@@ -26,7 +24,7 @@ public class ItemManager {
     }
 
     public static boolean isPickaxe(ItemStack is) {
-        if(is != null) {
+        if(is != null && !(is.getType() == Material.AIR) && new NBTItem(is).hasNBTData()) {
             return NBTUtils.getString(is, "ItemType").contains("Tool");
         } else {
             return false;
@@ -34,7 +32,7 @@ public class ItemManager {
     }
 
     public static boolean isAxe(ItemStack is) {
-        if(is != null) {
+        if(is != null && !(is.getType() == Material.AIR) && new NBTItem(is).hasNBTData()) {
             return NBTUtils.getString(is, "ItemType").contains("Tool");
         } else {
             return false;
@@ -42,7 +40,7 @@ public class ItemManager {
     }
 
     public static boolean isBow(ItemStack is) {
-        if(is != null) {
+        if(is != null && !(is.getType() == Material.AIR) && new NBTItem(is).hasNBTData()) {
             return NBTUtils.getString(is, "ItemType").contains("Bow");
         } else {
             return false;
@@ -50,7 +48,7 @@ public class ItemManager {
     }
 
     public static boolean isCrossbow(ItemStack is) {
-        if(is != null) {
+        if(is != null && !(is.getType() == Material.AIR) && new NBTItem(is).hasNBTData()) {
             return NBTUtils.getString(is, "ItemType").contains("Bow");
         } else {
             return false;
@@ -66,7 +64,7 @@ public class ItemManager {
     }
 
     public static boolean isChestplate(ItemStack is) {
-        if(is != null) {
+        if(is != null && !(is.getType() == Material.AIR) && new NBTItem(is).hasNBTData()) {
             return NBTUtils.getString(is, "ItemType").contains("Chestplate");
         } else {
             return false;
@@ -74,7 +72,7 @@ public class ItemManager {
     }
 
     public static boolean isLeggings(ItemStack is) {
-        if(is != null) {
+        if(is != null && !(is.getType() == Material.AIR) && new NBTItem(is).hasNBTData()) {
             return NBTUtils.getString(is, "ItemType").contains("Leggings");
         } else {
             return false;
@@ -82,7 +80,7 @@ public class ItemManager {
     }
 
     public static boolean isBoots(ItemStack is) {
-        if(is != null) {
+        if(is != null && !(is.getType() == Material.AIR) && new NBTItem(is).hasNBTData()) {
             return NBTUtils.getString(is, "ItemType").contains("Boots");
         } else {
             return false;

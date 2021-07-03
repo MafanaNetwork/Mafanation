@@ -1,10 +1,9 @@
 package me.TahaCheji.Mafana.dungeons.AquaDungeon;
 
 
-import me.TahaCheji.Mafana.Main;
 import me.TahaCheji.Mafana.itemData.RarityType;
-import me.TahaCheji.Mafana.itemLevel.managers.ConfigManager;
-import me.TahaCheji.Mafana.itemLevel.managers.MilestoneManager;
+import me.TahaCheji.Mafana.itemData.itemLevel.managers.ConfigManager;
+import me.TahaCheji.Mafana.itemData.itemLevel.managers.MilestoneManager;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;

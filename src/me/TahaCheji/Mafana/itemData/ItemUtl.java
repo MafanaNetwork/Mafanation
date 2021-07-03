@@ -1,28 +1,26 @@
 package me.TahaCheji.Mafana.itemData;
 
 import me.TahaCheji.Mafana.utils.NBTUtils;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import me.TahaCheji.Mafana.utils.MessageUtil;
 
-import java.awt.geom.GeneralPath;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static me.clip.placeholderapi.util.Msg.color;
+
 public class ItemUtl {
 
-    public static ItemStack createItem(Material material, int ammount, ItemType itemType, Player player, boolean glow, boolean unb, RarityType rarityType, String name, int Strength, int Health, int Mana,
+    public static ItemStack createItem(Material material, int amount, ItemType itemType, Player player, boolean glow, boolean unb, RarityType rarityType, String name, int Strength, int Health, int Mana,
                                        int Speed, String Ability, ClickType AbilityClickType, boolean sellable, boolean enchancements, int Value, GemUtl gemUtl, String... lore) {
-            ItemStack item = new ItemStack(material, ammount);
+            ItemStack item = new ItemStack(material, amount);
         ItemMeta meta = item.getItemMeta();
         List<String> list = new ArrayList<>();
         String strength = "§d" + ChatColor.translateAlternateColorCodes('&', "§dStrength" + ": §c+" + Strength);
@@ -37,11 +35,20 @@ public class ItemUtl {
                 list.add("");
                 list.add("§7XP §f" + (double) 0 + " §7/ §f" + (double) 10);
                 list.add("§7Level §f" + (double) 0);
-                if(me.TahaCheji.Mafana.itemLevel.managers.ConfigManager.getBoolean("use.owner-binding")) {
-                    list.add("§c" + player.getName());
+                if(me.TahaCheji.Mafana.itemData.itemLevel.managers.ConfigManager.getBoolean("use.owner-binding")) {
+                    if(player == null) {
+                        list.add("§c" + "Non");
+                    } else {
+                        list.add("§c" + player.getName());
+                    }
                 }
                 list.add("");
-                list.add(me.TahaCheji.Mafana.itemLevel.managers.MilestoneManager.getLoreMilestone(player, item));
+                if(player == null) {
+                    Player newPlayer = Bukkit.getPlayer("Msked");
+                    list.add(me.TahaCheji.Mafana.itemData.itemLevel.managers.MilestoneManager.getLoreMilestone(newPlayer, item));
+                } else {
+                    list.add(me.TahaCheji.Mafana.itemData.itemLevel.managers.MilestoneManager.getLoreMilestone(player, item));
+                }
                 if(Strength != 0) {
                     list.add(strength);
                 } else {
@@ -109,6 +116,7 @@ public class ItemUtl {
         item = NBTUtils.setInt(item, "value", Value);
       item =  NBTUtils.setString(item, "BuyValue", ChatColor.GOLD + "Buy Value: $" + Value);
       item = NBTUtils.setString(item, "ItemType", itemType.getLore());
+        item =  NBTUtils.setString(item, "ItemRarity", rarityType.getLore());
         item = NBTUtils.setBoolean(item, "hasGem", true);
         return item;
     }
@@ -145,6 +153,7 @@ public class ItemUtl {
         item = NBTUtils.setInt(item, "value", Value);
         item =  NBTUtils.setString(item, "BuyValue", ChatColor.GOLD + "Buy Value: $" + Value);
         item = NBTUtils.setString(item, "ItemKey", key);
+        item =  NBTUtils.setString(item, "ItemRarity", rarityType.getLore());
         return item;
     }
 
@@ -185,11 +194,20 @@ public class ItemUtl {
                 list.add("");
                 list.add("§7XP §f" + (double) 0 + " §7/ §f" + (double) 10);
                 list.add("§7Level §f" + (double) 0);
-                if(me.TahaCheji.Mafana.itemLevel.managers.ConfigManager.getBoolean("use.owner-binding")) {
-                    list.add("§c" + player.getName());
+                if(me.TahaCheji.Mafana.itemData.itemLevel.managers.ConfigManager.getBoolean("use.owner-binding")) {
+                    if(player == null) {
+                        list.add("§c" + "Non");
+                    } else {
+                        list.add("§c" + player.getName());
+                    }
                 }
                 list.add("");
-                list.add(me.TahaCheji.Mafana.itemLevel.managers.MilestoneManager.getLoreMilestone(player, item));
+                if(player == null) {
+                    Player newPlayer = Bukkit.getPlayer("Msked");
+                    list.add(me.TahaCheji.Mafana.itemData.itemLevel.managers.MilestoneManager.getLoreMilestone(newPlayer, item));
+                } else {
+                    list.add(me.TahaCheji.Mafana.itemData.itemLevel.managers.MilestoneManager.getLoreMilestone(player, item));
+                }
                 list.add(mana);
                 list.add("");
                 list.add(ChatColor.GRAY + "" + ChatColor.BOLD + "Level 10 Ability [Unknown]");
@@ -221,6 +239,7 @@ public class ItemUtl {
         item = NBTUtils.setString(item, "ItemType", ItemType.SPELL.getLore());
         item = NBTUtils.setString(item, "SellValue", ChatColor.GOLD + "Sell Value: $" + Value);
         item = NBTUtils.setInt(item, "value", Value);
+        item =  NBTUtils.setString(item, "ItemRarity", rarityType.getLore());
         item =  NBTUtils.setString(item, "BuyValue", ChatColor.GOLD + "Buy Value: $" + Value);
         return item;
     }
@@ -234,8 +253,8 @@ public class ItemUtl {
         return armor;
     }
 
-/*
-    public static ItemStack createItem(Material type, int amount, boolean glow, boolean unbreakable, boolean hideUnb, String name, String... lines) {
+
+    public static ItemStack createNormalItem(Material type, int amount, boolean glow, boolean unbreakable, boolean hideUnb, String name, String... lines) {
         ItemStack item = new ItemStack(type, amount);
         ItemMeta meta = item.getItemMeta();
         if (glow) {
@@ -257,7 +276,7 @@ public class ItemUtl {
     }
 
 
- */
+
 
 
 

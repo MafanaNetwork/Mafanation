@@ -1,11 +1,11 @@
-package me.TahaCheji.Mafana.itemLevel.commands;
+package me.TahaCheji.Mafana.itemData.itemLevel.commands;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import me.TahaCheji.Mafana.itemLevel.managers.ConfigManager;
-import me.TahaCheji.Mafana.itemLevel.managers.LoreManager;
-import me.TahaCheji.Mafana.itemLevel.managers.MilestoneManager;
+import me.TahaCheji.Mafana.itemData.itemLevel.managers.ConfigManager;
+import me.TahaCheji.Mafana.itemData.itemLevel.managers.LoreManager;
+import me.TahaCheji.Mafana.itemData.itemLevel.managers.MilestoneManager;
 import me.TahaCheji.Mafana.utils.MessageUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;

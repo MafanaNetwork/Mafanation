@@ -6,9 +6,11 @@ import net.minecraft.server.v1_16_R2.WorldServer;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.craftbukkit.v1_16_R2.CraftWorld;
+import org.bukkit.craftbukkit.v1_16_R2.entity.CraftMonster;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 
@@ -19,6 +21,7 @@ public class SpawnMob implements Listener {
 
     private BukkitTask task;
     private Map<Entity, CreateMob> entities = new HashMap<>();
+    private List<Entity> MagicEntities = new ArrayList<>();
 
     public SpawnMob spawnMobs(int mobCap, int spawnTime, Location radius1, Location radius2, CreateMob... createMob) {
         CreateMob[] mobTypes = createMob.clone();
@@ -55,13 +58,33 @@ public class SpawnMob implements Listener {
         return null;
     }
 
-    public SpawnMob spawnMagicMobs(int mobCap, int spawnTime, Location radius1, Location radius2, CreateMagicMob... createMob) {
+
+    public SpawnMob spawnMagicMobs(int mobCap, int spawnTime, Location radius1, Location radius2, CreateMagicMob createMob) {
+        task = new BukkitRunnable() {
+            List<Entity> removal = new ArrayList<>();
+            @Override
+            public void run() {
+                for (Entity entity : MagicEntities) {
+                    if (!entity.isValid() || entity.isDead()) removal.add(entity);
+                }
+                MagicEntities.removeAll(removal);
+                // Spawning Algorithm
+                int diff = mobCap - MagicEntities.size();
+                if (diff <= 0) return;
+                int spawnAmount = (int) (Math.random() * (diff + 1)), count = 0;
+                while (count <= spawnAmount) {
+                    count++;
                     Location location = getRandomLocation(radius1, radius2);
-                    WorldServer worldServer = ((CraftWorld)location.getWorld()).getHandle();
-                    CreateMagicMob mob = new CreateMagicMob(location);
-                    worldServer.addEntity(mob);
+                    if (!isSpawnable(location)) continue;
+                    double random = Math.random() * 101, previous = 0;
+                    ((CraftWorld) Objects.requireNonNull(location.getWorld())).getHandle().addEntity(createMob, CreatureSpawnEvent.SpawnReason.CUSTOM);
+                    MagicEntities.add(createMob.getBukkitEntity());
+                }
+            }
+        }.runTaskTimer(Main.getInstance(), 0L, spawnTime * 20);
                return null;
     }
+
 
     public SpawnMob spawnMob(Location location, CreateMob createMob) {
         Set<Entity> spawned = entities.keySet();
@@ -84,7 +107,7 @@ public class SpawnMob implements Listener {
 
     private boolean isSpawnable(Location loc) {
         Block feetBlock = loc.getBlock(), headBlock = loc.clone().add(0, 1, 0).getBlock(), upperBlock = loc.clone().add(0, 2, 0).getBlock();
-        return feetBlock.isPassable() && !feetBlock.isLiquid() && headBlock.isPassable() && !headBlock.isLiquid() && upperBlock.isPassable() && !upperBlock.isLiquid();
+        return feetBlock.isPassable() &&  !feetBlock.isLiquid() && headBlock.isPassable() && !headBlock.isLiquid() && upperBlock.isPassable() && !upperBlock.isLiquid();
     }
 
     private double getRandomOffset() {

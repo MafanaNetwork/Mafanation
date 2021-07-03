@@ -1,4 +1,4 @@
-package me.TahaCheji.Mafana.itemLevel.managers;
+package me.TahaCheji.Mafana.itemData.itemLevel.managers;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;

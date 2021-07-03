@@ -1,9 +1,11 @@
 package me.TahaCheji.Mafana;
+//import com.bringholm.nametagchanger.NameTagChanger;
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 import de.ancash.actionbar.ActionBarAPI;
 import de.tr7zw.nbtapi.NBTItem;
 import me.TahaCheji.Mafana.area.SkeletonHills.Mobs.MeatySkeleton;
 import me.TahaCheji.Mafana.area.SkeletonHills.Mobs.OutLayer;
+import me.TahaCheji.Mafana.area.town.mine.MineMobs;
 import me.TahaCheji.Mafana.crafting.CraftingUtl;
 import me.TahaCheji.Mafana.dungeons.AquaDungeon.FounderDrownedMainAI;
 import me.TahaCheji.Mafana.dungeons.AquaDungeon.ReservoirCap;
@@ -14,12 +16,13 @@ import me.TahaCheji.Mafana.Mining.blockevent;
 import me.TahaCheji.Mafana.dungeons.AquaDungeon.MainDungeon;
 import me.TahaCheji.Mafana.gameItems.Spell.MeshOfSilk;
 import me.TahaCheji.Mafana.gameItems.Weapons.*;
+import me.TahaCheji.Mafana.gameMobs.mobs.ExcavatorZombie;
 import me.TahaCheji.Mafana.gui.itemsCommandGui.ItemsGuiClicks;
 import me.TahaCheji.Mafana.gui.ShopGuiManager;
 import me.TahaCheji.Mafana.itemData.EnchancmentsUtl;
 import me.TahaCheji.Mafana.commands.Commands;
 import me.TahaCheji.Mafana.itemData.UndeadAttributeUtl;
-import me.TahaCheji.Mafana.itemLevel.commands.*;
+import me.TahaCheji.Mafana.itemData.itemLevel.commands.*;
 import me.TahaCheji.Mafana.listeners.playerRightClick.GuiInvClicks;
 import me.TahaCheji.Mafana.mobData.SpawnMob;
 import me.TahaCheji.Mafana.npc.town.Shops.Farmist;
@@ -112,8 +115,8 @@ public class Main extends JavaPlugin implements Listener {
         PLUGIN = this;
         plugin = this;
         PluginManager pluginmanager = getServer().getPluginManager();
-        pluginmanager.registerEvents(new me.TahaCheji.Mafana.itemLevel.managers.EventManager(), plugin);
-        pluginmanager.registerEvents(new me.TahaCheji.Mafana.itemLevel.managers.AnvilManager(), plugin);
+        pluginmanager.registerEvents(new me.TahaCheji.Mafana.itemData.itemLevel.managers.EventManager(), plugin);
+        pluginmanager.registerEvents(new me.TahaCheji.Mafana.itemData.itemLevel.managers.AnvilManager(), plugin);
         getCommand("givepaper").setExecutor(new GivePaperCommand());
         getCommand("StandTest").setExecutor(new Commands());
         getCommand("configreload").setExecutor(new ReloadConfigCommand());
@@ -126,7 +129,7 @@ public class Main extends JavaPlugin implements Listener {
         getCommand("spawn").setExecutor(new Commands());
         getCommand("mobTest").setExecutor(new Commands());
         getCommand("InventoryTest").setExecutor(new Commands());
-        getCommand("Vote").setExecutor(new Commands());
+        getCommand("CraftingTable").setExecutor(new Commands());
         getCommand("nick").setExecutor(new Commands());
 
         plugin.saveDefaultConfig();
@@ -139,6 +142,7 @@ public class Main extends JavaPlugin implements Listener {
             getServer().getPluginManager().disablePlugin(this);
             return;
         }
+
 
         this.getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
 
@@ -158,6 +162,7 @@ public class Main extends JavaPlugin implements Listener {
         getConfig().options().copyDefaults(true);
         saveConfig();
 
+        //NameTagChanger.INSTANCE.setPlugin(plugin);
         //custom player log
 
         saveDefaultLangConfig();
@@ -442,6 +447,12 @@ private void VoterHologram() {
         getServer().getPluginManager().registerEvents(new playerTimePlayed(), this);
         getServer().getPluginManager().registerEvents(new playerTalkedTo(), this);
         getServer().getPluginManager().registerEvents(new BakerShop(), this);
+        getServer().getPluginManager().registerEvents(new PlayerClick(), this);
+
+        getServer().getPluginManager().registerEvents(new ExcavatorZombie(), this);
+        getServer().getPluginManager().registerEvents(new ExcavatorMasterSpade(), this);
+        getServer().getPluginManager().registerEvents(new MineMobs(), this);
+        getServer().getPluginManager().registerEvents(new PlayerDeath(), this);
     }
 
 
@@ -476,6 +487,9 @@ private void VoterHologram() {
         for(LivingEntity entity : Bukkit.getWorld("world").getLivingEntities()) {
             entity.remove();
         }
+        //if (NameTagChanger.INSTANCE.isEnabled()) {
+          //  NameTagChanger.INSTANCE.disable();
+        //}
         try {
             Field keyField = Enchantment.class.getDeclaredField("byKey");
 

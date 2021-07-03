@@ -11,6 +11,7 @@ import org.bukkit.entity.Zombie;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
@@ -46,12 +47,13 @@ public class HealthAttributeUtl implements Listener {
             System.out.println("f");
             return;
         }
+
         if(check.containsKey(player.getUniqueId()) && check.containsValue(newArmor)) {
             return;
         }
         check.put(player.getUniqueId(), newArmor);
         double health = getHealthAttribute(newArmor) / 5;
-        player.getAttribute(Attribute.GENERIC_MAX_HEALTH).addModifier(new AttributeModifier("generic.MaxHealth", health, AttributeModifier.Operation.ADD_NUMBER));
+       // player.getAttribute(Attribute.).addModifier(new AttributeModifier("baseStrength", health, AttributeModifier.Operation.ADD_NUMBER));
 
     }
 
@@ -72,10 +74,13 @@ public class HealthAttributeUtl implements Listener {
         if(!check.containsKey(player.getUniqueId()) && !check.containsValue(oldArmor)) {
             return;
         }
+
         check.remove(player.getUniqueId(), oldArmor);
         double health = getHealthAttribute(oldArmor) / 5;
         player.getAttribute(Attribute.GENERIC_MAX_HEALTH).addModifier(new AttributeModifier("generic.MaxHealth", -health, AttributeModifier.Operation.ADD_NUMBER));
     }
+
+
 
 
 

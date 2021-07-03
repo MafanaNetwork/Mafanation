@@ -24,10 +24,10 @@ import java.util.Random;
 
 public class LootItem {
 
-    private static ItemStack item1;
-    private static int min = 1, max = 1;
-    private static double dropRate;
-    private static Random randomiser = new Random();
+    private final ItemStack item1;
+    private int min = 1, max = 1;
+    private final double dropRate;
+    private Random randomiser = new Random();
 
     public LootItem(ItemStack item, double dropRate)  {
         this.item1 = item;
@@ -42,7 +42,10 @@ public class LootItem {
     }
 
     public void tryDropItem(Location loc) {
-        if (Math.random() * 101 > dropRate) return;
+        if (Math.random() * 101 > dropRate) {
+            System.out.println(item1.getItemMeta().getDisplayName());
+            return;
+        }
         int amount = randomiser.nextInt(max - min + 1) + min;
         if (amount == 0) return;
         ItemStack item = item1.clone();
@@ -50,13 +53,13 @@ public class LootItem {
         ArmorStand as = (ArmorStand) loc.getWorld().spawnEntity(loc, EntityType.ARMOR_STAND);
         as.setCustomNameVisible(true);
         as.setCustomName(item.getItemMeta().getDisplayName() + ChatColor.GRAY + " x" + amount);
+        as.setInvulnerable(true);
         as.setVisible(false);
         as.setGravity(false);
         as.setArms(true);
         as.setLeftArmPose(new EulerAngle(0,0,38f));
         as.setRightArmPose(new EulerAngle(80f, 90f, 15f));
         NBTUtils.setEntityString(as, "LootItem", "ArmorStand");
-        as.setInvulnerable(false);
         Bukkit.getScheduler().scheduleAsyncRepeatingTask(Main.getInstance(), new ArmorstandAnimation(as), 0, 1);
         if(NBTUtils.getString(item, "ItemType").contains("Boots")) {
             as.getEquipment().setBoots(item);
@@ -64,15 +67,15 @@ public class LootItem {
         }
         if(NBTUtils.getString(item, "ItemType").contains("Leggings")) {
             as.getEquipment().setLeggings(item);
-            return;
+           return;
         }
         if(NBTUtils.getString(item, "ItemType").contains("Chestplate")) {
         as.getEquipment().setChestplate(item);
-        return;
+       return;
         }
         if(NBTUtils.getString(item, "ItemType").contains("Helmet")) {
             as.getEquipment().setHelmet(item);
-            return;
+          return;
         } else {
             as.getEquipment().setItemInMainHand(item);
             return;
@@ -84,12 +87,6 @@ public class LootItem {
     public ItemStack getItem() {
         return item1;
     }
-
-    public void spiningArmorStand(ArmorStand armorStand) {
-
-
-    }
-
 
 }
 

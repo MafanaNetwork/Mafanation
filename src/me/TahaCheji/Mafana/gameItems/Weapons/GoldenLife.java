@@ -27,8 +27,8 @@ public class GoldenLife {
     }
 
 
-    public static void GoldenLifeRecipe(Player player, Inventory gui) throws IOException {
-        CraftingUtl.createRecipe(BlockOfLife.BlockOfLife(), 1, BlockOfLife.BlockOfLife(), 1, BlockOfLife.BlockOfLife(), 1, null, 0, MidasStand.MidasStand(), 1, null, 0, null, 0, MidasStand.MidasStand(), 1, null, 0, player, GoldenLife(player), gui);
+    public static void GoldenLifeRecipe(Player player, Inventory gui){
+        new CraftingUtl().createRecipe(BlockOfLife.BlockOfLife(), 1, BlockOfLife.BlockOfLife(), 1, BlockOfLife.BlockOfLife(), 1, null, 0, MidasStand.MidasStand(), 1, null, 0, null, 0, MidasStand.MidasStand(), 1, null, 0, player, GoldenLife(player), gui);
     }
 
 

@@ -22,7 +22,7 @@ public class PointyBone {
     }
 
     public static void pointyBoneRecipe(Player player, Inventory gui) {
-        CraftingUtl.createRecipe(null, 1, null, 0,
+      new  CraftingUtl().createRecipe(null, 1, null, 0,
                 null, 0, null, 0, BoneShard.BoneShard(), 1,
                 null, 0, null, 0, BoneShard.BoneShard(), 1, null, 0, player, pointyBone(player), gui);
     }

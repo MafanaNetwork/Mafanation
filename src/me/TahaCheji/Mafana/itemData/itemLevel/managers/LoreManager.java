@@ -1,4 +1,4 @@
-package me.TahaCheji.Mafana.itemLevel.managers;
+package me.TahaCheji.Mafana.itemData.itemLevel.managers;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -45,7 +45,7 @@ public class LoreManager {
     public static String getLoreMilestone(ItemStack is) {
         String lore;
         try {
-            if(me.TahaCheji.Mafana.itemLevel.managers.ConfigManager.getBoolean("use.owner-binding")) {
+            if(me.TahaCheji.Mafana.itemData.itemLevel.managers.ConfigManager.getBoolean("use.owner-binding")) {
                 lore = is.getItemMeta().getLore().get(5);
             } else {
                 lore = is.getItemMeta().getLore().get(4);

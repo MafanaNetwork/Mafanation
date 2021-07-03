@@ -70,14 +70,15 @@ public class PlayerDamage implements Listener {
             Bukkit.getScheduler().runTaskLater(Main.getInstance(), () -> {
                 h.delete();
             }, 20); // Time in ticks (20 ticks = 1 second)
+        if (e.getEntity() instanceof Player && e.getDamager() instanceof Monster) {
             e.getEntity().setCustomNameVisible(true);
-        e.getEntity().setCustomName(ChatColor.translateAlternateColorCodes('&',
-                e.getEntity().getName().split(" ")[0] + ChatColor.RED + " ♥" +
-                        ChatColor.RED + format.format((int) heath) + ChatColor.RED + "♥"));
+            e.getEntity().setCustomName(ChatColor.translateAlternateColorCodes('&',
+                    e.getEntity().getName().split(" ")[0] + ChatColor.RED + " ♥" +
+                            ChatColor.RED + format.format((int) heath) + ChatColor.RED + "♥"));
+        }
             double x = e.getEntity().getLocation().getX();
             double y = e.getEntity().getLocation().getY() + player.getEyeHeight();
             double z = e.getEntity().getLocation().getZ();
-
             Particle.DustOptions dustOptions = new Particle.DustOptions(Color.fromRGB(100, 0, 0), 1);
             player.spawnParticle(Particle.REDSTONE, x, y, z, 25, dustOptions);
             player.playSound(player.getLocation(), Sound.BLOCK_STONE_BREAK, 10, 10);

@@ -1,7 +1,7 @@
-package me.TahaCheji.Mafana.itemLevel.commands;
+package me.TahaCheji.Mafana.itemData.itemLevel.commands;
 
 
-import me.TahaCheji.Mafana.itemLevel.managers.ConfigManager;
+import me.TahaCheji.Mafana.itemData.itemLevel.managers.ConfigManager;
 import me.TahaCheji.Mafana.utils.MessageUtil;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

@@ -22,6 +22,9 @@ public class DropLoot implements Listener {
         Entity entity = e.getEntity();
         e.getDrops().clear();
         e.setDroppedExp(0);
+        if(entity instanceof Player) {
+            return;
+        }
         if(entity.getCustomName() == null) {
             return;
         }

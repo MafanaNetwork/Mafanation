@@ -19,36 +19,28 @@ import java.util.Arrays;
 import java.util.List;
 
 public class CreateMagicMob extends EntityMonster {
-    private String name;
-    private double spawnChance;
-    private static EntityTypes type;
-    private double maxHealth;
-    private int strength;
-    private int defense;
-    private int damage;
-    private int speed;
-    private ItemStack mainItem;
-    private ItemStack[] armor;
+    private final String name;
+    private final double spawnChance;
+    private final int strength;
+    private final int defense;
+    private final int damage;
+    private final int speed;
+    private final ItemStack mainItem;
+    private final ItemStack[] armor;
     private PathfinderGoal goals;
-    private List<LootItem> lootTable;
+    private final List<LootItem> lootTable;
 
-    public CreateMagicMob(EntityTypes<? extends EntityMonster> entity, World world, String name, double spawnChance, double maxHealth, int strength, int defense, int damage, int speed, ItemStack mainItem, ItemStack[] armor, PathfinderGoal goals, List<LootItem> lootTable) {
-        super(entity, world);
+    public CreateMagicMob(EntityTypes<? extends EntityMonster> mob, World world, Location loc, String name, double spawnChance, double maxHealth, int strength, int defense, int damage, int speed, ItemStack mainItem, ItemStack[] armor, LootItem... lootTable) {
+        super(mob, world);
         this.name = name;
         this.spawnChance = spawnChance;
-        this.maxHealth = maxHealth;
         this.strength = strength;
         this.defense = defense;
         this.damage = damage;
         this.speed = speed;
         this.mainItem = mainItem;
         this.armor = armor;
-        this.goals = goals;
-        this.lootTable = lootTable;
-    }
-
-    public CreateMagicMob(Location loc) {
-        super(type, ((CraftWorld) loc.getWorld()).getHandle());
+        this.lootTable = Arrays.asList(lootTable);
 
         this.setPosition(loc.getX(), loc.getY(), loc.getZ());
 
@@ -67,7 +59,7 @@ public class CreateMagicMob extends EntityMonster {
             this.getAttributeInstance(GenericAttributes.MOVEMENT_SPEED).setValue(speed);
         }
         this.getAttributeInstance(GenericAttributes.ATTACK_DAMAGE).setValue(strength * damage / 5);
-        EntityEquipment inv = entity.getEquipment();
+       EntityEquipment inv = entity.getEquipment();
         if (armor != null) inv.setArmorContents(armor);
         inv.setHelmetDropChance(0f);
         inv.setChestplateDropChance(0f);
@@ -75,7 +67,8 @@ public class CreateMagicMob extends EntityMonster {
         inv.setBootsDropChance(0f);
         inv.setItemInMainHand(mainItem);
         inv.setItemInMainHandDropChance(0f);
-        NBTUtils.setEntityString(this.getBukkitEntity(), "MobName", name);
+        System.out.println("test 1");
+        NBTUtils.setEntityString(entity, "MobName", name);
     }
 
     public void tryDropLoot(Location location) {
@@ -90,10 +83,6 @@ public class CreateMagicMob extends EntityMonster {
 
     public double getSpawnChance() {
         return spawnChance;
-    }
-
-    public EntityTypes getType() {
-        return type;
     }
 
     public int getStrength() {

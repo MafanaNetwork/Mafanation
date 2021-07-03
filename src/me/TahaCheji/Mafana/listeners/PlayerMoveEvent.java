@@ -19,14 +19,24 @@ public class PlayerMoveEvent implements Listener {
         Player player = e.getPlayer();
 
         for(Entity entity : player.getNearbyEntities(1,1,1)) {
+            if(entity == null) {
+                return;
+            }
             if(entity instanceof ArmorStand) {
-                NBTCompound nbt = new NBTEntity(entity).getPersistentDataContainer();
-                if(nbt.hasKey("LootItem")) {
-                    player.getInventory().addItem(((ArmorStand) entity).getEquipment().getItemInMainHand());
-                    player.getInventory().addItem(((ArmorStand) entity).getEquipment().getArmorContents());
-                    player.playSound(player.getLocation(), Sound.ENTITY_ITEM_PICKUP, 10, 10);
-                    entity.remove();
+                if(((ArmorStand) entity).getEquipment() == null) {
+                    continue;
                 }
+                if(((ArmorStand) entity).getItemInHand() == null) {
+                    continue;
+                }
+                NBTCompound nbt = new NBTEntity(entity).getPersistentDataContainer();
+                if(!(nbt.hasKey("LootItem"))) {
+                   return;
+                }
+                player.getInventory().addItem(((ArmorStand) entity).getEquipment().getItemInMainHand());
+                player.getInventory().addItem(((ArmorStand) entity).getEquipment().getArmorContents());
+                player.playSound(player.getLocation(), Sound.ENTITY_ITEM_PICKUP, 10, 10);
+                entity.remove();
 
             }
         }

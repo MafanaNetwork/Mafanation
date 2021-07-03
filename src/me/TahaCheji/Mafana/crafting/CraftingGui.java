@@ -23,7 +23,7 @@ public class CraftingGui implements InventoryHolder {
 
     public Inventory GUI;
 
-    public CraftingGui(Player player) {
+    public CraftingGui() {
         GUI = Bukkit.createInventory(null, 27, ChatColor.GRAY + "" + ChatColor.BOLD + "MafanaCraft");
         ArrayList<String> lore = new ArrayList<String>();
 

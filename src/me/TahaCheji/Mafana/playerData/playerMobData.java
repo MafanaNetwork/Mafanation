@@ -1,6 +1,7 @@
 package me.TahaCheji.Mafana.playerData;
 
 import me.TahaCheji.Mafana.listeners.PlayerDeath;
+import me.TahaCheji.Mafana.utils.NBTUtils;
 import me.TahaCheji.Mafana.utils.removeHealth;
 import net.minecraft.server.v1_16_R2.PacketPlayOutEntityHeadRotation;
 import org.bukkit.block.Block;
@@ -65,7 +66,8 @@ public class playerMobData implements Listener {
         if(pD.get("collectionsAdvanced." + entity.getCustomName()) == null) {
             return 0;
         }
-        double count = pD.getDouble("collectionsAdvanced." + entity.getCustomName());
+        if(NBTUtils.getEntityString(entity, "MobName") == null) return 0;
+        double count = pD.getDouble("collectionsAdvanced." + NBTUtils.getEntityString(entity, "MobName"));
 
         return count;
     }

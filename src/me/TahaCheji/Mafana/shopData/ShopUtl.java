@@ -2,6 +2,7 @@ package me.TahaCheji.Mafana.shopData;
 
 import de.tr7zw.nbtapi.NBTItem;
 import me.TahaCheji.Mafana.Main;
+import me.TahaCheji.Mafana.playerData.playerBuyHistory;
 import me.TahaCheji.Mafana.playerData.playerInfo.playerCoinSpent;
 import me.TahaCheji.Mafana.utils.NBTUtils;
 import net.milkbowl.vault.economy.Economy;
@@ -22,8 +23,8 @@ import java.util.List;
 
 public class ShopUtl implements InventoryHolder {
     public Inventory Gui;
-    private String name;
-    private ItemStack[] items;
+    private final String name;
+    private final ItemStack[] items;
 
 
     public ShopUtl(String name, ItemStack... items) {
@@ -61,11 +62,12 @@ public class ShopUtl implements InventoryHolder {
             for(String lorenew : item.getItemMeta().getLore()) {
                 list.add(lorenew);
             }
+            meta.setDisplayName(item.getItemMeta().getDisplayName());
             list.add("");
             if(!(new NBTItem(item).hasKey("BuyValue"))) {
                 continue;
             }
-            list.add(NBTUtils.getString(item, "BuyValue"));
+            list.add(NBTUtils.getString(item, "BuyValue") + ChatColor.GRAY + " x" + item.getAmount());
             meta.setLore(list);
             item.setItemMeta(meta);
         }
@@ -152,17 +154,18 @@ public class ShopUtl implements InventoryHolder {
             return;
         }
         Economy economy = Main.getEcon();
-        if(!(economy.has(player, NBTUtils.getInt(item, "value")))) { //check if the player has the money
+        if(!(economy.has(player, NBTUtils.getInt(item, "value") * item.getAmount()))) { //check if the player has the money
             player.sendMessage(ChatColor.RED + "You do not have enough coins to buy this item.");
             player.playSound(player.getLocation(), Sound.ENTITY_VILLAGER_YES, 10, 10);
             return;
         }
-        economy.withdrawPlayer(player, NBTUtils.getInt(item, "value")); //remove the money
+        economy.withdrawPlayer(player, NBTUtils.getInt(item, "value") * item.getAmount()); //remove the money
         for(ItemStack itemStack : items) { //give the player the item
             if(itemStack.getItemMeta().getDisplayName().contains(item.getItemMeta().getDisplayName())) {
                 player.getInventory().addItem(itemStack);
-                player.sendMessage(ChatColor.GOLD + "You Bought " + itemStack.getItemMeta().getDisplayName() + " for $" + NBTUtils.getInt(itemStack, "value"));
-                playerCoinSpent.setCoinsSpent(player, playerCoinSpent.getCoinsSpent(player) + NBTUtils.getInt(itemStack, "value"));
+                player.sendMessage(ChatColor.GOLD + "You Bought " + itemStack.getItemMeta().getDisplayName() + " for $" + NBTUtils.getInt(itemStack, "value") * item.getAmount());
+                playerCoinSpent.setCoinsSpent(player, playerCoinSpent.getCoinsSpent(player) + NBTUtils.getInt(itemStack, "value") * item.getAmount());
+                playerBuyHistory.setBuyHistory(player, item);
                 player.playSound(player.getLocation(), Sound.ENTITY_VILLAGER_NO, 10, 10);
             }
         }

@@ -1,6 +1,7 @@
 package me.TahaCheji.Mafana.listeners;
 
 
+//import com.bringholm.nametagchanger.NameTagChanger;
 import me.TahaCheji.Mafana.Main;
 import me.TahaCheji.Mafana.game.Title;
 import me.TahaCheji.Mafana.playerData.playerInventoryData;
@@ -71,6 +72,8 @@ public class PlayerJoin implements Listener {
         pS.setCurrentIntelligence(pS.getMaxIntelligence());
         pS.setSpeed(PlayerStats.getSpeed(pS.getPlayer()));
         PlayerStats.playerStats.put(p.getUniqueId(), pS);
+   // NameTagChanger.INSTANCE.changePlayerName(p, "TestName");
+   // System.out.println(p.getDisplayName());
         if(!(p.hasPlayedBefore())) {
                 p.playSound(p.getLocation(), Sound.ENTITY_ENDER_DRAGON_DEATH, 5, 5);
                 p.playSound(p.getLocation(), Sound.UI_TOAST_CHALLENGE_COMPLETE, 10, 10);
@@ -95,6 +98,9 @@ public class PlayerJoin implements Listener {
                 File playerTalkedTo = new File("plugins/Mafanation/playerData/" + p.getUniqueId().toString() + "/playerTalkedTo.yml");
                 File playerCollections = new File("plugins/Mafanation/playerData/" + p.getUniqueId().toString() + "/playerCollections.yml");
                 File playerDungeonsCompleted = new File("plugins/Mafanation/playerData/" + p.getUniqueId().toString() + "/playerDungeonsCompleted.yml");
+
+                File playerSellHistory = new File("plugins/Mafanation/playerData/" + p.getUniqueId().toString() + "/playerSellHistory.yml");
+                File playerBuyHistory = new File("plugins/Mafanation/playerData/" + p.getUniqueId().toString() + "/playerBuyHistory.yml");
                 FileConfiguration pD = YamlConfiguration.loadConfiguration(playerData);
                 FileConfiguration pInv = YamlConfiguration.loadConfiguration(playerInventory);
                 FileConfiguration pInfo = YamlConfiguration.loadConfiguration(playerInfo);
@@ -103,6 +109,9 @@ public class PlayerJoin implements Listener {
                 FileConfiguration pTalkedTo = YamlConfiguration.loadConfiguration(playerTalkedTo);
                 FileConfiguration pCollections = YamlConfiguration.loadConfiguration(playerCollections);
                 FileConfiguration pDungeonsCompleted = YamlConfiguration.loadConfiguration(playerDungeonsCompleted);
+
+                FileConfiguration pSellHistory = YamlConfiguration.loadConfiguration(playerSellHistory);
+                FileConfiguration pBuyHistory = YamlConfiguration.loadConfiguration(playerBuyHistory);
                 if (!new File("plugins/Mafanation/playerData/" + p.getUniqueId().toString()).exists()) {
                     new File("plugins/Mafanation/playerData/" + p.getUniqueId().toString()).mkdir();
                 }
@@ -156,6 +165,15 @@ public class PlayerJoin implements Listener {
                 if (!playerDungeonsCompleted.exists()) {
                     playerDungeonsCompleted.createNewFile();
                     pDungeonsCompleted.save(playerDungeonsCompleted);
+                }
+
+                if (!playerBuyHistory.exists()) {
+                    playerBuyHistory.createNewFile();
+                    pBuyHistory.save(playerBuyHistory);
+                }
+                if (!playerSellHistory.exists()) {
+                    playerSellHistory.createNewFile();
+                    pSellHistory.save(playerSellHistory);
                 }
             }
 
