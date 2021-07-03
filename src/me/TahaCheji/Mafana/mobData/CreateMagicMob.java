@@ -41,7 +41,7 @@ public class CreateMagicMob extends EntityMonster {
         this.mainItem = mainItem;
         this.armor = armor;
         this.lootTable = Arrays.asList(lootTable);
-
+//this
         this.setPosition(loc.getX(), loc.getY(), loc.getZ());
 
         LivingEntity entity = (LivingEntity) this.getBukkitEntity();
