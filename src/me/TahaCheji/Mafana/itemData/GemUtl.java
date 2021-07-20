@@ -9,8 +9,8 @@ import java.util.List;
 public class GemUtl {
 
 
-    private String name;
-    private String Ability;
+    private final String name;
+    private final String Ability;
 
     public GemUtl(String name, String ability) {
         this.name = name;

@@ -20,7 +20,7 @@ public class playerItemFished implements Listener {
 
     //itemsFished
     public static double getFishedCollection(Player p, Material fish) {
-        File playerData = new File("plugins/Mafanation/playerData/" + p.getUniqueId().toString() + "/playerItemFished.yml");
+        File playerData = new File("plugins/Mafanation/playerData/" + p.getUniqueId() + "/playerItemFished.yml");
         FileConfiguration pD = YamlConfiguration.loadConfiguration(playerData);
         try {
             pD.load(playerData);
@@ -37,7 +37,7 @@ public class playerItemFished implements Listener {
     }
 
     public static void setFishCollection(Player p, Material fish) throws IOException {
-        File playerData = new File("plugins/Mafanation/playerData/" + p.getUniqueId().toString() + "/playerItemFished.yml");
+        File playerData = new File("plugins/Mafanation/playerData/" + p.getUniqueId() + "/playerItemFished.yml");
         FileConfiguration pD = YamlConfiguration.loadConfiguration(playerData);
         try {
             pD.load(playerData);
@@ -51,7 +51,7 @@ public class playerItemFished implements Listener {
     }
 
     public static Double getFishCount(Player p) throws IOException {
-        File playerData = new File("plugins/Mafanation/playerData/" + p.getUniqueId().toString() + "/playerItemFished.yml");
+        File playerData = new File("plugins/Mafanation/playerData/" + p.getUniqueId() + "/playerItemFished.yml");
         FileConfiguration pD = YamlConfiguration.loadConfiguration(playerData);
         try {
             pD.load(playerData);
@@ -65,7 +65,7 @@ public class playerItemFished implements Listener {
     }
 
     public static void addFishCount(Player p) throws IOException {
-        File playerData = new File("plugins/Mafanation/playerData/" + p.getUniqueId().toString() + "/playerItemFished.yml");
+        File playerData = new File("plugins/Mafanation/playerData/" + p.getUniqueId() + "/playerItemFished.yml");
         FileConfiguration pD = YamlConfiguration.loadConfiguration(playerData);
         try {
             pD.load(playerData);

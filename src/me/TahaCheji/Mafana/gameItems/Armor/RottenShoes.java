@@ -16,7 +16,7 @@ public class RottenShoes {
 
     public static ItemStack RottenShoes(Player player) {
         ItemStack itemStack = new ItemStack(Material.LEATHER_BOOTS);
-        ItemMeta itemMeta = (ItemMeta) itemStack.getItemMeta();
+        ItemMeta itemMeta = itemStack.getItemMeta();
         int random = ThreadLocalRandom.current().nextInt(5);
         ArrayList<String> lore = new ArrayList<String>();
         itemMeta.setUnbreakable(true);

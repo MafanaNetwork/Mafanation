@@ -14,16 +14,16 @@ import org.bukkit.inventory.ItemStack;
 
 public class TradeManager {
 
-    private Main p;
+    private final Main p;
 
     private TradeRequest tradeRequest;
-    private TradeChestLayout tcLayout;
+    private final TradeChestLayout tcLayout;
 
     private boolean targetAccepted = false;
     private boolean targetDeclined = false;
 
-    private TradePlayer TPsender;
-    private TradePlayer TPtarget;
+    private final TradePlayer TPsender;
+    private final TradePlayer TPtarget;
 
     private Inventory tradeChest;
 
@@ -42,7 +42,7 @@ public class TradeManager {
     public enum Role {
 
         SENDER, TARGET
-    };
+    }
 
     String[] protectedNames = {"Accept", "Divider", "Instructions", "Status"};
     List protNameList = Arrays.asList(protectedNames);
@@ -174,23 +174,15 @@ public class TradeManager {
 
         String displaName = testblock.getItemMeta().getDisplayName();
 
-        if (protNameList.contains(displaName)) {
-            return true;
-        }
-        return false;
+        return protNameList.contains(displaName);
     }
 
     public boolean isPlaceableSlot(int slot, boolean isSender) {
         if (isSender) {
-            if (senderSlots.contains(slot)) {
-                return true;
-            }
+            return senderSlots.contains(slot);
         } else {
-            if (targetSlots.contains(slot)) {
-                return true;
-            }
+            return targetSlots.contains(slot);
         }
-            return false;
     }
 
     public void updateRequest() {

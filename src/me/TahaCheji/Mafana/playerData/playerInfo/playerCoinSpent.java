@@ -14,7 +14,7 @@ import java.io.IOException;
 public class playerCoinSpent implements Listener {
 
     public static double getCoinsSpent(Player p) {
-        File playerData = new File("plugins/Mafanation/playerData/" + p.getUniqueId().toString() + "/playerInfo.yml");
+        File playerData = new File("plugins/Mafanation/playerData/" + p.getUniqueId() + "/playerInfo.yml");
         FileConfiguration pD = YamlConfiguration.loadConfiguration(playerData);
         try {
             pD.load(playerData);
@@ -27,7 +27,7 @@ public class playerCoinSpent implements Listener {
     }
 
     public static void setCoinsSpent(Player p, double amount) throws IOException {
-        File playerData = new File("plugins/Mafanation/playerData/" + p.getUniqueId().toString() + "/playerInfo.yml");
+        File playerData = new File("plugins/Mafanation/playerData/" + p.getUniqueId() + "/playerInfo.yml");
         FileConfiguration pD = YamlConfiguration.loadConfiguration(playerData);
         try {
             pD.load(playerData);

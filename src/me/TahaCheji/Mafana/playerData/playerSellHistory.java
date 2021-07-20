@@ -14,7 +14,7 @@ import java.io.IOException;
 public class playerSellHistory {
 
     public static ItemStack getSellHistory(Player p, ItemStack item) {
-        File playerData = new File("plugins/Mafanation/playerData/" + p.getUniqueId().toString() + "/playerSellHistory.yml");
+        File playerData = new File("plugins/Mafanation/playerData/" + p.getUniqueId() + "/playerSellHistory.yml");
         FileConfiguration pD = YamlConfiguration.loadConfiguration(playerData);
         try {
             pD.load(playerData);
@@ -28,7 +28,7 @@ public class playerSellHistory {
     }
 
     public static void setSellHistory(Player p, ItemStack item) throws IOException {
-        File playerData = new File("plugins/Mafanation/playerData/" + p.getUniqueId().toString() + "/playerSellHistory.yml");
+        File playerData = new File("plugins/Mafanation/playerData/" + p.getUniqueId() + "/playerSellHistory.yml");
         FileConfiguration pD = YamlConfiguration.loadConfiguration(playerData);
         try {
             pD.load(playerData);

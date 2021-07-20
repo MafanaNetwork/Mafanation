@@ -21,23 +21,23 @@ import java.util.List;
 
 public class CreateNPC {
 
-    private String name;
-    private double maxHealth;
-    private int strength;
-    private int defense;
-    private int damage;
-    private int speed;
-    private int attackSpeed;
-    private ItemStack mainItem;
-    private ItemStack offItem;
-    private ItemStack helmet;
-    private ItemStack chestplate;
-    private ItemStack leggings;
-    private ItemStack boots;
-    private int despawnTime;
-    private String skinName;
-    private String signature;
-    private String data;
+    private final String name;
+    private final double maxHealth;
+    private final int strength;
+    private final int defense;
+    private final int damage;
+    private final int speed;
+    private final int attackSpeed;
+    private final ItemStack mainItem;
+    private final ItemStack offItem;
+    private final ItemStack helmet;
+    private final ItemStack chestplate;
+    private final ItemStack leggings;
+    private final ItemStack boots;
+    private final int despawnTime;
+    private final String skinName;
+    private final String signature;
+    private final String data;
 
 
     public CreateNPC(String name, double maxHealth, int strength, int defense, int damage, int speed, int attackSpeed,

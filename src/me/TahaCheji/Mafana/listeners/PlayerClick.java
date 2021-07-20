@@ -1,6 +1,11 @@
 package me.TahaCheji.Mafana.listeners;
 
+import de.tr7zw.nbtapi.NBTItem;
+import me.TahaCheji.Mafana.Main;
 import me.TahaCheji.Mafana.crafting.CraftingGui;
+import me.TahaCheji.Mafana.crafting.MasterTable;
+import me.TahaCheji.Mafana.crafting.RecipeGui;
+import me.TahaCheji.Mafana.shopData.ShopUtl;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
@@ -8,11 +13,14 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+
+import java.io.IOException;
 
 public class PlayerClick implements Listener {
 
@@ -37,6 +45,51 @@ public class PlayerClick implements Listener {
             }
         }
 
+    }
+
+    @EventHandler
+    public void clickEvent(InventoryClickEvent e) throws IOException {
+        if(e.getView().getTitle().contains("Recipe")) {
+            e.setCancelled(true);
+        }
+
+        Player player = (Player) e.getWhoClicked();
+        for(ShopUtl shopUtl : Main.shopUtl) {
+            shopUtl.getClickedItem(e);
+        }
+
+    }
+
+
+    @EventHandler
+    public void rightClick(PlayerInteractEvent e) {
+        if(!(e.getAction() == Action.RIGHT_CLICK_AIR)) return;
+        for(MasterTable table : Main.recipes) {
+            for(ItemStack itemStack : table.getRecipe()) {
+                if(e.getItem() == null) {
+                    continue;
+                }
+                if(e.getItem().getItemMeta() == null) {
+                    continue;
+                }
+                if(itemStack == null) {
+                    continue;
+                }
+                if(itemStack.getItemMeta() == null) {
+                    continue;
+                }
+                if(!new NBTItem(e.getItem()).hasNBTData()) {
+                    continue;
+                }
+                if(!new NBTItem(e.getItem()).hasKey("ItemKey")) {
+                    continue;
+                }
+                if(!new NBTItem(e.getItem()).getString("ItemKey").equalsIgnoreCase(new NBTItem(itemStack).getString("ItemKey"))) {
+                    continue;
+                }
+                e.getPlayer().openInventory(new RecipeGui(table).getInventory());
+            }
+        }
     }
 
 

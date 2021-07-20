@@ -4,6 +4,8 @@ package me.TahaCheji.Mafana.listeners;
 //import com.bringholm.nametagchanger.NameTagChanger;
 import me.TahaCheji.Mafana.Main;
 import me.TahaCheji.Mafana.game.Title;
+import me.TahaCheji.Mafana.itemData.ItemType;
+import me.TahaCheji.Mafana.itemData.RarityType;
 import me.TahaCheji.Mafana.playerData.playerInventoryData;
 import me.TahaCheji.Mafana.scoreboard.Manager;
 import me.TahaCheji.Mafana.stats.*;
@@ -16,6 +18,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 
@@ -73,7 +76,7 @@ public class PlayerJoin implements Listener {
         pS.setSpeed(PlayerStats.getSpeed(pS.getPlayer()));
         PlayerStats.playerStats.put(p.getUniqueId(), pS);
    // NameTagChanger.INSTANCE.changePlayerName(p, "TestName");
-   // System.out.println(p.getDisplayName());
+   //System.out.println(p.getDisplayName());
         if(!(p.hasPlayedBefore())) {
                 p.playSound(p.getLocation(), Sound.ENTITY_ENDER_DRAGON_DEATH, 5, 5);
                 p.playSound(p.getLocation(), Sound.UI_TOAST_CHALLENGE_COMPLETE, 10, 10);
@@ -90,17 +93,17 @@ public class PlayerJoin implements Listener {
     public void onJoin(PlayerJoinEvent e) throws IOException {
     Player p = e.getPlayer();
                 Economy economy = Main.getEcon();
-                File playerData = new File("plugins/Mafanation/playerData/" + p.getUniqueId().toString() + "/data.yml");
-                File playerInventory = new File("plugins/Mafanation/playerData/" + p.getUniqueId().toString() + "/playerInventory.yml");
-                File playerInfo = new File("plugins/Mafanation/playerData/" + p.getUniqueId().toString() + "/playerInfo.yml");
-                File playerMobData = new File("plugins/Mafanation/playerData/" + p.getUniqueId().toString() + "/playerMobData.yml");
-                File playerItemFished = new File("plugins/Mafanation/playerData/" + p.getUniqueId().toString() + "/playerItemFished.yml");
-                File playerTalkedTo = new File("plugins/Mafanation/playerData/" + p.getUniqueId().toString() + "/playerTalkedTo.yml");
-                File playerCollections = new File("plugins/Mafanation/playerData/" + p.getUniqueId().toString() + "/playerCollections.yml");
-                File playerDungeonsCompleted = new File("plugins/Mafanation/playerData/" + p.getUniqueId().toString() + "/playerDungeonsCompleted.yml");
+                File playerData = new File("plugins/Mafanation/playerData/" + p.getUniqueId() + "/data.yml");
+                File playerInventory = new File("plugins/Mafanation/playerData/" + p.getUniqueId() + "/playerInventory.yml");
+                File playerInfo = new File("plugins/Mafanation/playerData/" + p.getUniqueId() + "/playerInfo.yml");
+                File playerMobData = new File("plugins/Mafanation/playerData/" + p.getUniqueId() + "/playerMobData.yml");
+                File playerItemFished = new File("plugins/Mafanation/playerData/" + p.getUniqueId() + "/playerItemFished.yml");
+                File playerTalkedTo = new File("plugins/Mafanation/playerData/" + p.getUniqueId() + "/playerTalkedTo.yml");
+                File playerCollections = new File("plugins/Mafanation/playerData/" + p.getUniqueId() + "/playerCollections.yml");
+                File playerDungeonsCompleted = new File("plugins/Mafanation/playerData/" + p.getUniqueId() + "/playerDungeonsCompleted.yml");
 
-                File playerSellHistory = new File("plugins/Mafanation/playerData/" + p.getUniqueId().toString() + "/playerSellHistory.yml");
-                File playerBuyHistory = new File("plugins/Mafanation/playerData/" + p.getUniqueId().toString() + "/playerBuyHistory.yml");
+                File playerSellHistory = new File("plugins/Mafanation/playerData/" + p.getUniqueId() + "/playerSellHistory.yml");
+                File playerBuyHistory = new File("plugins/Mafanation/playerData/" + p.getUniqueId() + "/playerBuyHistory.yml");
                 FileConfiguration pD = YamlConfiguration.loadConfiguration(playerData);
                 FileConfiguration pInv = YamlConfiguration.loadConfiguration(playerInventory);
                 FileConfiguration pInfo = YamlConfiguration.loadConfiguration(playerInfo);
@@ -112,8 +115,8 @@ public class PlayerJoin implements Listener {
 
                 FileConfiguration pSellHistory = YamlConfiguration.loadConfiguration(playerSellHistory);
                 FileConfiguration pBuyHistory = YamlConfiguration.loadConfiguration(playerBuyHistory);
-                if (!new File("plugins/Mafanation/playerData/" + p.getUniqueId().toString()).exists()) {
-                    new File("plugins/Mafanation/playerData/" + p.getUniqueId().toString()).mkdir();
+                if (!new File("plugins/Mafanation/playerData/" + p.getUniqueId()).exists()) {
+                    new File("plugins/Mafanation/playerData/" + p.getUniqueId()).mkdir();
                 }
                 if (!playerData.exists()) {
                     playerData.createNewFile();
@@ -135,6 +138,8 @@ public class PlayerJoin implements Listener {
                     pInfo.set("info.coins", economy.getBalance(p));
                     pInfo.set("info.coinSpent", 0);
                     pInfo.set("info.mostDamage", 0);
+                    pInfo.set("info.voted", false);
+                    pInfo.set("info.votedFor", "null");
                     pInfo.set("info.lastLocation", p.getLocation());
                     pInfo.set("info.timePlayed", p.getStatistic(Statistic.PLAY_ONE_MINUTE) / 60);
                     pInfo.set("info.dateLastJoined", dtf.format(now));

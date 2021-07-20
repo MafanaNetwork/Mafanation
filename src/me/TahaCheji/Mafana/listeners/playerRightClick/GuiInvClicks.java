@@ -5,7 +5,6 @@ import de.tr7zw.nbtapi.NBTEntity;
 import me.TahaCheji.Mafana.Main;
 import me.TahaCheji.Mafana.utils.NBTUtils;
 import net.milkbowl.vault.economy.Economy;
-import net.minecraft.server.v1_16_R2.NBTTagCompound;
 import org.bukkit.Material;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.NPC;

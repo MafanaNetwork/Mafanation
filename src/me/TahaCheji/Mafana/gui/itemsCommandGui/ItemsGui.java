@@ -46,7 +46,7 @@ public class ItemsGui implements InventoryHolder {
             }
         }
 
-        WeaponGUI.setItem(40,closeShop);
+        WeaponGUI.setItem(49,closeShop);
 
 
         WeaponGUI.setItem(10, WarriorsBlade.WarriorsBlade(player));
@@ -58,7 +58,7 @@ public class ItemsGui implements InventoryHolder {
         WeaponGUI.setItem(16, WaterBreathBow.WaterBreathBow(player));
         WeaponGUI.setItem(19, ReservoirCap.ReservoirCap(player));
         WeaponGUI.setItem(20, AtomSplit.AtomSplit(player));
-        WeaponGUI.setItem(21, GoldenLife.GoldenLife(player));
+        WeaponGUI.setItem(21, new GoldenLife().getMasterGoldenLife(player));
         WeaponGUI.setItem(22, MagicCookie.helmmet(player));
         WeaponGUI.setItem(23, MagicCookie.chestplate(player));
         WeaponGUI.setItem(24, MagicCookie.leggings(player));
@@ -76,6 +76,9 @@ public class ItemsGui implements InventoryHolder {
         WeaponGUI.setItem(39, RestoredCristal.getRestoredCristal());
         WeaponGUI.setItem(41, ProspectorTorch.getProspectorTorch());
         WeaponGUI.setItem(42, CollierStick.getCollierStick());
+        WeaponGUI.setItem(43, new DeformedBone().getDeformedBone(player));
+        WeaponGUI.setItem(45, new MeshOfSilk().getMeshOfSilk(player));
+        WeaponGUI.setItem(46, CompressedSilk.getCompressedSilk());
     }
 
     @Override

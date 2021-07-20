@@ -18,7 +18,7 @@ import java.io.IOException;
 public class playerMostDamage implements Listener {
 
     public static Double getMostDamage(Player p) throws IOException {
-        File playerData = new File("plugins/Mafanation/playerData/" + p.getUniqueId().toString() + "/playerInfo.yml");
+        File playerData = new File("plugins/Mafanation/playerData/" + p.getUniqueId() + "/playerInfo.yml");
         FileConfiguration pD = YamlConfiguration.loadConfiguration(playerData);
         try {
             pD.load(playerData);
@@ -31,7 +31,7 @@ public class playerMostDamage implements Listener {
     }
 
     public static void setMostDamage(Player p, double amount) throws IOException {
-        File playerData = new File("plugins/Mafanation/playerData/" + p.getUniqueId().toString() + "/playerInfo.yml");
+        File playerData = new File("plugins/Mafanation/playerData/" + p.getUniqueId() + "/playerInfo.yml");
         FileConfiguration pD = YamlConfiguration.loadConfiguration(playerData);
         try {
             pD.load(playerData);

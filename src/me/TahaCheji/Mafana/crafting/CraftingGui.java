@@ -35,7 +35,7 @@ public class CraftingGui implements InventoryHolder {
 
         ItemStack newItem = new ItemStack(Material.GRAY_STAINED_GLASS_PANE);
         ItemMeta newmeta = newItem.getItemMeta();
-        newmeta.setDisplayName(ChatColor.GRAY + " ");
+        newmeta.setDisplayName(ChatColor.GRAY + "");
         newmeta.setLore(lore);
         newItem.setItemMeta(newmeta);
         for (int emptySlot = 0; emptySlot < GUI.getSize(); emptySlot++) {

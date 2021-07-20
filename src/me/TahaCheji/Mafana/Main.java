@@ -7,6 +7,7 @@ import me.TahaCheji.Mafana.area.SkeletonHills.Mobs.MeatySkeleton;
 import me.TahaCheji.Mafana.area.SkeletonHills.Mobs.OutLayer;
 import me.TahaCheji.Mafana.area.town.mine.MineMobs;
 import me.TahaCheji.Mafana.crafting.CraftingUtl;
+import me.TahaCheji.Mafana.crafting.MasterTable;
 import me.TahaCheji.Mafana.dungeons.AquaDungeon.FounderDrownedMainAI;
 import me.TahaCheji.Mafana.dungeons.AquaDungeon.ReservoirCap;
 import me.TahaCheji.Mafana.dungeons.AquaDungeon.WaterBreathBow;
@@ -19,9 +20,8 @@ import me.TahaCheji.Mafana.gameItems.Weapons.*;
 import me.TahaCheji.Mafana.gameMobs.mobs.ExcavatorZombie;
 import me.TahaCheji.Mafana.gui.itemsCommandGui.ItemsGuiClicks;
 import me.TahaCheji.Mafana.gui.ShopGuiManager;
-import me.TahaCheji.Mafana.itemData.EnchancmentsUtl;
+import me.TahaCheji.Mafana.itemData.*;
 import me.TahaCheji.Mafana.commands.Commands;
-import me.TahaCheji.Mafana.itemData.UndeadAttributeUtl;
 import me.TahaCheji.Mafana.itemData.itemLevel.commands.*;
 import me.TahaCheji.Mafana.listeners.playerRightClick.GuiInvClicks;
 import me.TahaCheji.Mafana.mobData.SpawnMob;
@@ -29,7 +29,9 @@ import me.TahaCheji.Mafana.npc.town.Shops.Farmist;
 import me.TahaCheji.Mafana.npc.town.Shops.OreMaster;
 import me.TahaCheji.Mafana.npc.town.Shops.WeaponSmith;
 import me.TahaCheji.Mafana.npc.town.Voter.Voter;
-import me.TahaCheji.Mafana.npc.town.Voter.VoterGuiEvent;
+import me.TahaCheji.Mafana.shopData.ShopUtl;
+import me.TahaCheji.Mafana.voting.MainVote;
+import me.TahaCheji.Mafana.voting.VoterGuiEvent;
 import me.TahaCheji.Mafana.playerData.playerCollections.playerBlockPlaced;
 import me.TahaCheji.Mafana.playerData.playerCollections.playerBlocksBroken;
 import me.TahaCheji.Mafana.playerData.playerInfo.*;
@@ -38,6 +40,7 @@ import me.TahaCheji.Mafana.playerData.playerItemFished;
 import me.TahaCheji.Mafana.playerData.playerMobData;
 import me.TahaCheji.Mafana.playerData.playerTalkedTo;
 import me.TahaCheji.Mafana.shops.BakerShop;
+import me.TahaCheji.Mafana.utils.*;
 import me.TahaCheji.Mafana.utils.data.DataHandler;
 import me.TahaCheji.Mafana.gameItems.items.bakersItems.*;
 import me.TahaCheji.Mafana.listeners.*;
@@ -47,12 +50,8 @@ import me.TahaCheji.Mafana.npc.town.Baker.Baker;
 import me.TahaCheji.Mafana.npc.town.Baker.BakerShopGuiClicks;
 import me.TahaCheji.Mafana.game.*;
 import me.TahaCheji.Mafana.stats.*;
-import me.TahaCheji.Mafana.mainMobs.mobDrops.town.TownZombieDrops;
+import me.TahaCheji.Mafana.mobData.mainMobs.mobDrops.town.TownZombieDrops;
 import me.TahaCheji.Mafana.tradeManagers.trade.*;
-import me.TahaCheji.Mafana.utils.Attribute;
-import me.TahaCheji.Mafana.utils.Files;
-import me.TahaCheji.Mafana.utils.Metrics;
-import me.TahaCheji.Mafana.utils.NBTUtils;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.*;
 import org.bukkit.block.Block;
@@ -68,6 +67,8 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.scheduler.BukkitTask;
 import org.mcmonkey.sentinel.SentinelPlugin;
 
 import java.io.File;
@@ -79,11 +80,13 @@ import java.util.logging.Level;
 
 public class Main extends JavaPlugin implements Listener {
 
+    public static List<MasterTable> recipes = new ArrayList<>();
+    public static List<ShopUtl> shopUtl = new ArrayList<>();
+
+
     public static Main PLUGIN;
     public static ArrayList<Enchantment> custom_enchants = new ArrayList<>();
     private static Main instance;
-    private boolean titlechanged = false;
-    private Set<Game> games = new HashSet<>();
     private final PlayerListener playerListener = new PlayerListener(this);
     private final BlockListener blockListener = new BlockListener(this);
     private final EntityListener entityListener = new EntityListener(this);
@@ -91,9 +94,9 @@ public class Main extends JavaPlugin implements Listener {
     private final InventoryListener inventoryListener = new InventoryListener(this);
     private FileConfiguration lang = null;
     private File langFile = null;
-    private static HashMap<String, TradePlayer> traders = new HashMap<String, TradePlayer>();
-    private static HashMap<String, TradePlayer> requests = new HashMap<String, TradePlayer>();
-    private Map<UUID, Integer> taskId = new HashMap<>();
+    private static final HashMap<String, TradePlayer> traders = new HashMap<String, TradePlayer>();
+    private static final HashMap<String, TradePlayer> requests = new HashMap<String, TradePlayer>();
+    private final Map<UUID, Integer> taskId = new HashMap<>();
     private int taskID;
     public static Set<UUID> hold = new HashSet<UUID>();
     private Connection connection;
@@ -130,9 +133,15 @@ public class Main extends JavaPlugin implements Listener {
         getCommand("mobTest").setExecutor(new Commands());
         getCommand("InventoryTest").setExecutor(new Commands());
         getCommand("CraftingTable").setExecutor(new Commands());
-        getCommand("nick").setExecutor(new Commands());
+        getCommand("ResetVotes").setExecutor(new Commands());
 
         plugin.saveDefaultConfig();
+
+        try {
+            MainVote.createFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         Bukkit.getPluginManager().registerEvents(this, this);
 
@@ -169,7 +178,7 @@ public class Main extends JavaPlugin implements Listener {
         reloadLangFile();
 
 VoterHologram();
-        mysqlSetup();
+       // mysqlSetup();
 
         if (getServer().getPluginManager().getPlugin("Citizens") == null || getServer().getPluginManager().getPlugin("Citizens").isEnabled() == false) {
             getLogger().log(Level.SEVERE, "Citizens 2.0 not found or not enabled");
@@ -213,6 +222,7 @@ VoterHologram();
             }, 20L, 15L);
         }
         SentinelPlugin.instance.registerIntegration(new LoafOfHealth());
+        inventoryCheckEvent();
 
         statUpdate();
     }
@@ -292,7 +302,7 @@ VoterHologram();
                     .replace("%cur_strength%", (""+Math.ceil(pS.getStrength())).replace(".0", ""))
                     .replace("%cur_speed%", (""+Math.ceil(pS.getSpeed())).replace(".0", ""));
 
-            File playerData = new File("plugins/Mafanation/playerData/"+pS.getPlayer().getUniqueId().toString()+"/data.yml");
+            File playerData = new File("plugins/Mafanation/playerData/"+ pS.getPlayer().getUniqueId() +"/data.yml");
             FileConfiguration pD = YamlConfiguration.loadConfiguration(playerData);
 
             try {
@@ -320,13 +330,13 @@ private void VoterHologram() {
 
     Bukkit.getScheduler().runTaskTimer(this,() -> {
         holo.insertTextLine(0,ChatColor.GOLD + "Update #1 Votes: " + VoterGuiEvent.option1);
-        holo2.insertTextLine(0,ChatColor.WHITE + "Coming Soon");
+        holo2.insertTextLine(0,ChatColor.WHITE + MainVote.getUpdate1Name());
 
         holo1.insertTextLine(0,ChatColor.GOLD + "Update #2 Votes: " + VoterGuiEvent.option2);
-        holo3.insertTextLine(0,ChatColor.WHITE + "Coming Soon");
+        holo3.insertTextLine(0,ChatColor.WHITE + MainVote.getUpdate2Name());
 
         holo4.insertTextLine(0,ChatColor.GOLD + "Update #3 Votes: " + VoterGuiEvent.option3);
-        holo5.insertTextLine(0,ChatColor.WHITE + "Coming Soon");
+        holo5.insertTextLine(0,ChatColor.WHITE + MainVote.getUpdate3Name());
 
 
     },0L,0L);
@@ -393,6 +403,7 @@ private void VoterHologram() {
         getServer().getPluginManager().registerEvents(new Ben(), this);
         getServer().getPluginManager().registerEvents(new Lobby(), this);
         getServer().getPluginManager().registerEvents(new Voter(), this);
+        getServer().getPluginManager().registerEvents(new VoterGuiEvent(), this);
         getServer().getPluginManager().registerEvents(new TownZombieDrops(), this);
         getServer().getPluginManager().registerEvents(new WarriorsBlade(), this);
         getServer().getPluginManager().registerEvents(new EnchancmentsUtl(), this);
@@ -456,6 +467,26 @@ private void VoterHologram() {
     }
 
 
+    public void inventoryCheckEvent() {
+        BukkitTask t = new BukkitRunnable() {
+            @Override
+            public void run() {
+                for(Player p : Bukkit.getOnlinePlayers()) {
+                    for(ItemStack itemStack : p.getInventory()) {
+                        if(itemStack == null) {
+                            continue;
+                        }
+                        if(itemStack.getItemMeta() == null) {
+                            continue;
+                        }
+                      ItemStackUtil.addItemTags(itemStack, 10, ItemType.ITEM,  RarityType.COAL);
+                    }
+                }
+            }
+        }.runTaskTimer(Main.getInstance(), 40L, 20L);
+    }
+
+
 
 
     public static Main getPlugin() {
@@ -498,9 +529,7 @@ private void VoterHologram() {
             HashMap<NamespacedKey, Enchantment> byKey = (HashMap<NamespacedKey, Enchantment>) keyField.get(null);
 
             for (Enchantment enchantment : custom_enchants){
-                if(byKey.containsKey(enchantment.getKey())) {
-                    byKey.remove(enchantment.getKey());
-                }
+                byKey.remove(enchantment.getKey());
             }
 
             Field nameField = Enchantment.class.getDeclaredField("byName");
@@ -510,9 +539,7 @@ private void VoterHologram() {
             HashMap<String, Enchantment> byName = (HashMap<String, Enchantment>) nameField.get(null);
 
             for (Enchantment enchantment : custom_enchants){
-                if(byName.containsKey(enchantment.getName())) {
-                    byName.remove(enchantment.getName());
-                }
+                byName.remove(enchantment.getName());
             }
         } catch (Exception ignored) { }
 

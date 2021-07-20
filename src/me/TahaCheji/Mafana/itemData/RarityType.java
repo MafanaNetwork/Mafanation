@@ -2,7 +2,16 @@ package me.TahaCheji.Mafana.itemData;
 
 import de.tr7zw.nbtapi.NBTItem;
 import me.TahaCheji.Mafana.utils.NBTUtils;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.OfflinePlayer;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.Item;
+import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.entity.EntityBreedEvent;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
@@ -58,10 +67,13 @@ public enum RarityType {
                return;
            }
            String newLore = string.replaceAll(NBTUtils.getString(itemStack, "ItemRarity"), rarityType.getLore());
+           NBTUtils.setString(itemStack, "ItemRarity", rarityType.getLore());
           list.add(newLore);
        }
        meta.setLore(list);
        itemStack.setItemMeta(meta);
     }
+
+
 
 }

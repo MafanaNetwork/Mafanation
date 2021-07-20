@@ -25,7 +25,7 @@ public class PlayerListener implements Listener {
 
     @EventHandler
     public void onPlayerQuit(PlayerQuitEvent event) {
-        Player sender = (Player) event.getPlayer();
+        Player sender = event.getPlayer();
 
         TradePlayer target = p.getTraders().get(sender.getName());
         if (target == null) {
@@ -48,7 +48,7 @@ public class PlayerListener implements Listener {
             return;
         }
 
-        Player player = (Player) event.getPlayer();
+        Player player = event.getPlayer();
         Player target = (Player) event.getRightClicked();
 
         Boolean isShift = player.isSneaking();

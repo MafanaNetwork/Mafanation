@@ -45,6 +45,7 @@ public class ExcavatorMasterSpade implements Listener {
                 player, getExcavatorMasterSpade(player), gui);
     }
 
+
     public static void Miner(Player player) {
         NPCRegistry registry = CitizensAPI.getNPCRegistry();
         NPC Cook = registry.createNPC(EntityType.PLAYER, "Miner");

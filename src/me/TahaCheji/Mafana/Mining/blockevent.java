@@ -1,6 +1,8 @@
 package me.TahaCheji.Mafana.Mining;
 
 import me.TahaCheji.Mafana.Main;
+import me.TahaCheji.Mafana.itemData.ItemType;
+import me.TahaCheji.Mafana.itemData.RarityType;
 import me.TahaCheji.Mafana.npc.town.Shops.OreMaster;
 import me.TahaCheji.Mafana.game.Title;
 import org.bukkit.*;
@@ -9,6 +11,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
 
 import java.util.concurrent.ThreadLocalRandom;
@@ -27,6 +30,7 @@ public class blockevent implements Listener {
             return;
         }
 
+        /*
         if(m == (Material.STONE)) {
             e.setCancelled(true);
             e.getBlock().setType(Material.BEDROCK);
@@ -120,6 +124,8 @@ public class blockevent implements Listener {
                 }
             }, 200L);
         }
+
+         */
 
 
     }

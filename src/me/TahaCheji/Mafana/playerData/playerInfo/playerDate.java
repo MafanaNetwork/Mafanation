@@ -17,7 +17,7 @@ import java.time.format.DateTimeFormatter;
 public class playerDate implements Listener {
 
     public static String getLastPlayed(Player p) throws IOException {
-        File playerData = new File("plugins/Mafanation/playerData/" + p.getUniqueId().toString() + "/playerInfo.yml");
+        File playerData = new File("plugins/Mafanation/playerData/" + p.getUniqueId() + "/playerInfo.yml");
         FileConfiguration pD = YamlConfiguration.loadConfiguration(playerData);
         try {
             pD.load(playerData);
@@ -30,7 +30,7 @@ public class playerDate implements Listener {
     }
 
     public static void setLastLocation(Player p) throws IOException {
-        File playerData = new File("plugins/Mafanation/playerData/" + p.getUniqueId().toString() + "/playerInfo.yml");
+        File playerData = new File("plugins/Mafanation/playerData/" + p.getUniqueId() + "/playerInfo.yml");
         FileConfiguration pD = YamlConfiguration.loadConfiguration(playerData);
         try {
             pD.load(playerData);

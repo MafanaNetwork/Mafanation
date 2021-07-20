@@ -1,5 +1,5 @@
 package me.TahaCheji.Mafana.dungeons.AquaDungeon;
-import net.minecraft.server.v1_16_R2.EntityDrowned;
+
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;

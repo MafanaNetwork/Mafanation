@@ -45,8 +45,6 @@ public class CraftingUtl implements Listener {
     public static ItemStack checkSlot8;
     public static ItemStack checkSlot9;
 
-    //public static List<ItemStack> checkSlot1 = new ArrayList<>();
-
 
     public void createRecipe(ItemStack slot1, int amount1, ItemStack slot2, int amount2, ItemStack slot3, int amount3, ItemStack slot4, int amount4, ItemStack slot5, int
             amount5, ItemStack slot6, int amount6, ItemStack slot7, int amount7, ItemStack slot8, int amount8, ItemStack slot9, int amount9, Player player, ItemStack item, Inventory gui) {
@@ -257,16 +255,16 @@ public class CraftingUtl implements Listener {
         }
         Inventory GUI = e.getInventory();
 
-        if(e.getSlot() == 1 || e.getSlot() == 2 || e.getSlot() == 3 ||
-                e.getSlot() == 10 || e.getSlot() == 11 || e.getSlot() == 12 ||
-                e.getSlot() == 19 || e.getSlot() == 20 || e.getSlot() == 21 || e.getSlot() == 14 || e.getClickedInventory() == player.getInventory()) {
-            e.setCancelled(false);
-        } else {
-            e.setCancelled(true);
-        }
+        e.setCancelled(e.getSlot() != 1 && e.getSlot() != 2 && e.getSlot() != 3 &&
+                e.getSlot() != 10 && e.getSlot() != 11 && e.getSlot() != 12 &&
+                e.getSlot() != 19 && e.getSlot() != 20 && e.getSlot() != 21 && e.getSlot() != 14 && e.getClickedInventory() != player.getInventory());
 
-        if(e.getSlot() == 14) {
-           craftedItem(e);
+        System.out.println(Main.recipes.size());
+
+        for(MasterTable masterTable : Main.recipes) {
+            masterTable.createRecipe(GUI);
+            masterTable.craftedItem(e);
+
         }
 
         registerCrafts(player, GUI);
@@ -276,7 +274,7 @@ public class CraftingUtl implements Listener {
         Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), new Runnable() {
             @Override
             public void run() {
-        GoldenLife.GoldenLifeRecipe(player, inventory);
+       // GoldenLife.GoldenLifeRecipe(player, inventory);
         PointyBone.pointyBoneRecipe(player, inventory);
         new MeshOfSilk().getMeshOfSilkRecipe(player, inventory);
         new ExcavatorMasterSpade().getExcavatorMasterSpadeRecipe(player, inventory);
@@ -291,8 +289,6 @@ public class CraftingUtl implements Listener {
         if (!(e.getView().getTitle().contains("MafanaCraft"))) {
             return;
         }
-        Inventory GUI = e.getInventory();
-
         if(!(e.getInventory().getItem(1) == null)) {
             player.getInventory().addItem(e.getInventory().getItem(1));
         }

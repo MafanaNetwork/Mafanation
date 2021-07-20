@@ -16,7 +16,7 @@ public class WarriorsBlade implements Listener {
 
     public static ItemStack WarriorsBlade(Player player) {
         ItemStack skeletonSword = new ItemStack(Material.IRON_SWORD);
-        ItemMeta skeletonMeta = (ItemMeta) skeletonSword.getItemMeta();
+        ItemMeta skeletonMeta = skeletonSword.getItemMeta();
         ArrayList<String> lore = new ArrayList<String>();
         skeletonMeta.setUnbreakable(true);
             skeletonMeta.setDisplayName(RarityType.GOLD.getLore() +  " Warrior’s Blade");

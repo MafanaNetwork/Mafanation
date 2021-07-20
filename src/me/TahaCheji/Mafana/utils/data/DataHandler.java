@@ -8,7 +8,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class DataHandler {
-    private static DataHandler ourInstance = new DataHandler();
+    private static final DataHandler ourInstance = new DataHandler();
     public static DataHandler getInstance() {
         return ourInstance;
     }
@@ -25,8 +25,8 @@ public class DataHandler {
         this.gameInfo = YamlConfiguration.loadConfiguration(this.gameInfoFile);
     }
 
-    private File gameInfoFile;
-    private FileConfiguration gameInfo;
+    private final File gameInfoFile;
+    private final FileConfiguration gameInfo;
 
     public FileConfiguration getGameInfo() {
         return gameInfo;

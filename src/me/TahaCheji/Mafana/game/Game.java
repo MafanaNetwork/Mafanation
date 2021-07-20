@@ -11,13 +11,13 @@ import java.util.*;
 
 public class Game {
 
-    private List<Location> spawnPoints;
+    private final List<Location> spawnPoints;
     private boolean isTeamGame;
     private Location lobbyPoint;
     private World world;
 
-    private int amount = 1;
-    private Map<Entity, Location> gamePlayerToSpawnPoint = new HashMap<>();
+    private final int amount = 1;
+    private final Map<Entity, Location> gamePlayerToSpawnPoint = new HashMap<>();
 
 
     public Game(String gameName) {

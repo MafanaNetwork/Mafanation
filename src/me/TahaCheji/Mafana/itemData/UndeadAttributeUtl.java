@@ -26,7 +26,7 @@ public class UndeadAttributeUtl implements Listener {
         return new NBTItem(is).getDouble(key);
     }
 
-    @EventHandler
+
     public static void onHit(EntityDamageByEntityEvent e) {
         if (!(e.getDamager() instanceof Player)) {
             return;

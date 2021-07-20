@@ -17,7 +17,7 @@ public class BlockPlaceEvent implements Listener {
 
     @EventHandler
     public void blockPlace(org.bukkit.event.block.BlockBreakEvent e) {
-        if(e.getPlayer().getGameMode() == GameMode.CREATIVE) {
+        if(e.getPlayer().getGameMode() == GameMode.CREATIVE || e.getPlayer().getGameMode() == GameMode.SURVIVAL) {
             return;
         }
         e.setCancelled(true);

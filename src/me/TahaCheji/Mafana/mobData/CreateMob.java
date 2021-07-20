@@ -6,6 +6,7 @@ import org.bukkit.Location;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.EntityEquipment;
 import org.bukkit.inventory.ItemStack;
 
@@ -14,16 +15,16 @@ import java.util.List;
 
 public class CreateMob {
 
-    private String name;
-    private double spawnChance;
-    private double maxHealth;
-    private EntityType type;
-    private int strength;
-    private int defense;
-    private int damage;
-    private int speed;
-    private ItemStack mainItem;
-    private ItemStack[] armor;
+    private final String name;
+    private final double spawnChance;
+    private final double maxHealth;
+    private final EntityType type;
+    private final int strength;
+    private final int defense;
+    private final int damage;
+    private final int speed;
+    private final ItemStack mainItem;
+    private final ItemStack[] armor;
     private final List<LootItem> lootTable;
 
      public CreateMob(String name, double spawnChance, EntityType type, double maxHealth, int strength, int defense, int damage, int speed,
@@ -66,9 +67,9 @@ public class CreateMob {
         return entity;
     }
 
-    public void tryDropLoot(Location location) {
+    public void tryDropLoot(Location location, Player player) {
         for (LootItem item : lootTable) {
-            item.tryDropItem(location);
+            item.tryDropItem(location, player);
         }
     }
 

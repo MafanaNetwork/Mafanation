@@ -1,6 +1,9 @@
 package me.TahaCheji.Mafana.itemData.itemLevel.managers;
 
+import de.tr7zw.nbtapi.NBTItem;
+import me.TahaCheji.Mafana.utils.Attribute;
 import me.TahaCheji.Mafana.utils.NBTUtils;
+import me.TahaCheji.Mafana.utils.StatsUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Item;
@@ -31,6 +34,10 @@ public class LevelManager {
     }
 
     private static void add(ItemStack is, int amount, Player player, Event event) {
+        int strength = 0;
+        int health = 0;
+        int speed = 0;
+        int mana = 0;
         if(is.getItemMeta().hasLore() &! (event instanceof PlayerExpChangeEvent)) {
             if(me.TahaCheji.Mafana.itemData.itemLevel.managers.ItemManager.isPickaxe(is) || me.TahaCheji.Mafana.itemData.itemLevel.managers.ItemManager.isShovel(is)) {
                 me.TahaCheji.Mafana.itemData.itemLevel.managers.BonusManager.increaseBlockBreakSpeed((BlockBreakEvent) event);
@@ -87,25 +94,37 @@ public class LevelManager {
                         if (newLore.contains("§dStrength: §c+")) {
                             int newStats = Integer.valueOf(newLore.replace("§dStrength: §c+", "")) + 1;
                             String str = "§d" + ChatColor.translateAlternateColorCodes('&', "§dStrength" + ": §c+" + newStats);
+                            strength = newStats;
                             lore.set(6, str);
                         }
                         if (newLore.contains("§cHealth: §c+")) {
                             int newStats = Integer.valueOf(newLore.replace("§cHealth: §c+", "").replace(" HP", "")) + 1;
                             String str = "§c" + ChatColor.translateAlternateColorCodes('&', "§cHealth" + ": §c+" + newStats + " HP");
+                            health = newStats;
                             lore.set(7, str);
                         }
                         if (newLore.contains("§9Mana: §c+")) {
                             int newStats = Integer.valueOf(newLore.replace("§9Mana: §c+", "")) + 1;
                             String str = "§9" + ChatColor.translateAlternateColorCodes('&', "§9Mana" + ": §c+" + newStats);
+                            mana = newStats;
                             lore.set(8, str);
                         }
                         if (newLore.contains("§bSpeed: §c+")) {
                             int newStats = Integer.valueOf(newLore.replace("§bSpeed: §c+", "")) + 1;
                             String str = "§b" + ChatColor.translateAlternateColorCodes('&', "§bSpeed" + ": §c+" + newStats);
+                            speed = newStats;
                             lore.set(9, str);
                         }
                     }
 
+                    im.setLore(lore);
+                    is.setItemMeta(im);
+                    NBTItem nbt = new NBTItem(is);
+                    nbt.setInteger("baseStrength", strength);
+                    nbt.setInteger("baseHealth", health);
+                    nbt.setInteger("baseMana", mana);
+                    nbt.setInteger("baseSpeed", speed);
+                    player.setItemInHand(nbt.getItem());
                 }
                 im.setLore(lore);
                 is.setItemMeta(im);

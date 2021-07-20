@@ -7,7 +7,7 @@ import org.bukkit.event.entity.*;
 public class EntityListener implements Listener {
 
     private final Main plugin;
-    private int itemNumber = 0;
+    private final int itemNumber = 0;
 
     public EntityListener(Main instance) {
         plugin = instance;

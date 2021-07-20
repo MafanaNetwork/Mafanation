@@ -15,7 +15,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class RottenShirt {
     public static ItemStack RottenShirt(Player player) {
         ItemStack itemStack = new ItemStack(Material.IRON_CHESTPLATE);
-        ItemMeta itemMeta = (ItemMeta) itemStack.getItemMeta();
+        ItemMeta itemMeta = itemStack.getItemMeta();
         int random = ThreadLocalRandom.current().nextInt(5);
         ArrayList<String> lore = new ArrayList<String>();
         itemMeta.setUnbreakable(true);

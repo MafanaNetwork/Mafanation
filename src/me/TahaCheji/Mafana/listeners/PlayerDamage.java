@@ -53,7 +53,7 @@ public class PlayerDamage implements Listener {
             return;
         }
         if(e.getEntity() instanceof Player) {
-            e.setCancelled(true);
+           // e.setCancelled(true);
             return;
         }
         Player player = (Player) e.getDamager();
@@ -65,7 +65,7 @@ public class PlayerDamage implements Listener {
         playerMostDamage.onHit(e);
         double heath = ((LivingEntity) e.getEntity()).getHealth();
             heath -= e.getDamage();
-            com.gmail.filoghost.holograms.api.Hologram h = (com.gmail.filoghost.holograms.api.Hologram) HolographicDisplaysAPI.createHologram
+            com.gmail.filoghost.holograms.api.Hologram h = HolographicDisplaysAPI.createHologram
                     (Main.getInstance(), e.getEntity().getLocation().add(getRandomOffset(), 2, getRandomOffset()), ChatColor.RED + "✧" + ChatColor.DARK_RED + format.format(e.getDamage()) + ChatColor.RED + "✧");
             Bukkit.getScheduler().runTaskLater(Main.getInstance(), () -> {
                 h.delete();
@@ -100,28 +100,28 @@ public class PlayerDamage implements Listener {
                 e.getEntity().getName().split(" ")[0] + ChatColor.RED + " ♥" +
                         ChatColor.RED + format.format((int) heath) + ChatColor.RED + "♥"));
         if(e.getCause().equals(EntityDamageEvent.DamageCause.FIRE_TICK)) {
-            com.gmail.filoghost.holograms.api.Hologram h = (com.gmail.filoghost.holograms.api.Hologram) HolographicDisplaysAPI.createHologram
+            com.gmail.filoghost.holograms.api.Hologram h = HolographicDisplaysAPI.createHologram
                     (Main.getInstance(), e.getEntity().getLocation().add(getRandomOffset(), 1, getRandomOffset()), ChatColor.RED + "✧" + ChatColor.GOLD + format.format(damageTaken) + ChatColor.RED + "✧");
             Bukkit.getScheduler().runTaskLater(Main.getInstance(), () -> {
                 h.delete();
             }, 20); // Time in ticks (20 ticks = 1 second)
         }
         if(e.getCause().equals(EntityDamageEvent.DamageCause.DROWNING)) {
-            com.gmail.filoghost.holograms.api.Hologram h = (com.gmail.filoghost.holograms.api.Hologram) HolographicDisplaysAPI.createHologram
+            com.gmail.filoghost.holograms.api.Hologram h = HolographicDisplaysAPI.createHologram
                     (Main.getInstance(), e.getEntity().getLocation().add(getRandomOffset(), 1, getRandomOffset()), ChatColor.AQUA + "✧" + ChatColor.GOLD + format.format(damageTaken) + ChatColor.RED + "✧");
             Bukkit.getScheduler().runTaskLater(Main.getInstance(), () -> {
                 h.delete();
             }, 20); // Time in ticks (20 ticks = 1 second)
         }
         if(e.getCause().equals(EntityDamageEvent.DamageCause.ENTITY_EXPLOSION)) {
-            com.gmail.filoghost.holograms.api.Hologram h = (com.gmail.filoghost.holograms.api.Hologram) HolographicDisplaysAPI.createHologram
+            com.gmail.filoghost.holograms.api.Hologram h = HolographicDisplaysAPI.createHologram
                     (Main.getInstance(), e.getEntity().getLocation().add(getRandomOffset(), 1, getRandomOffset()), ChatColor.RED + "✧" + ChatColor.DARK_GRAY + format.format(damageTaken) + ChatColor.RED + "✧");
             Bukkit.getScheduler().runTaskLater(Main.getInstance(), () -> {
                 h.delete();
             }, 20); // Time in ticks (20 ticks = 1 second)
         }
         if(e.getCause().equals(EntityDamageEvent.DamageCause.FALL)) {
-            com.gmail.filoghost.holograms.api.Hologram h = (com.gmail.filoghost.holograms.api.Hologram) HolographicDisplaysAPI.createHologram
+            com.gmail.filoghost.holograms.api.Hologram h = HolographicDisplaysAPI.createHologram
                     (Main.getInstance(), e.getEntity().getLocation().add(getRandomOffset(), 1, getRandomOffset()), ChatColor.RED + "✧" + ChatColor.BLACK + format.format(damageTaken) + ChatColor.RED + "✧");
             Bukkit.getScheduler().runTaskLater(Main.getInstance(), () -> {
                 h.delete();
@@ -166,7 +166,7 @@ public class PlayerDamage implements Listener {
         Particle.DustOptions dustOptions = new Particle.DustOptions(Color.fromRGB(100, 0, 0), 1);
         player.spawnParticle(Particle.REDSTONE, x,y,z, 25, dustOptions);
         player.playSound(player.getLocation(), Sound.BLOCK_STONE_BREAK, 10, 10);
-        com.gmail.filoghost.holograms.api.Hologram h = (com.gmail.filoghost.holograms.api.Hologram) HolographicDisplaysAPI.createHologram
+        com.gmail.filoghost.holograms.api.Hologram h = HolographicDisplaysAPI.createHologram
                 (Main.getInstance(), en.getLocation().add(getRandomOffset(), 1, getRandomOffset()),  ChatColor.WHITE + "✧" + ChatColor.WHITE  + format.format(realDamage) + ChatColor.WHITE + "✧" );
         Bukkit.getScheduler().runTaskLater(Main.getInstance(), () -> {
             h.delete();

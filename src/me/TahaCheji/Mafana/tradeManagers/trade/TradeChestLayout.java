@@ -10,10 +10,10 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 public class TradeChestLayout {
 
-    private Main plugin;
-    private TradeManager tradeManager;
-    private TradePlayer TPsender;
-    private TradePlayer TPtarget;
+    private final Main plugin;
+    private final TradeManager tradeManager;
+    private final TradePlayer TPsender;
+    private final TradePlayer TPtarget;
 
     private Inventory tradeChest;
 

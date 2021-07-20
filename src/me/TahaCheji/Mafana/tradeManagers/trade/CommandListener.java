@@ -10,7 +10,7 @@ import org.bukkit.entity.Player;
 import java.util.List;
 
 public class CommandListener implements CommandExecutor {
-    private Main p; // pointer to your main class, unrequired if you don't need methods from the main class
+    private final Main p; // pointer to your main class, unrequired if you don't need methods from the main class
 
     public CommandListener(Main plugin) {
         this.p = plugin;

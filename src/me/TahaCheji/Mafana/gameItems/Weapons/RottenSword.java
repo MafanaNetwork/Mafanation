@@ -26,7 +26,7 @@ public class RottenSword {
     AttributeModifier health = new AttributeModifier(UUID.randomUUID(), "generic.maxHealth", 2, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.CHEST);
     meta.addAttributeModifier(Attribute.GENERIC_MAX_HEALTH, health);
     rottenStick.setItemMeta(meta);
-        rottenStick = undeadAttributeUtl.setUndeadAttribute(rottenStick, 15.0);
+        rottenStick = UndeadAttributeUtl.setUndeadAttribute(rottenStick, 15.0);
         return rottenStick;
     }
 }

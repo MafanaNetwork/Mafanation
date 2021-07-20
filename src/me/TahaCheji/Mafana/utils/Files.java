@@ -17,7 +17,7 @@ public class Files {
 	static File configFile = new File("plugins/Mafanation/config.yml");
 	public static FileConfiguration cfg = YamlConfiguration.loadConfiguration(configFile);
 	
-	public static void initFiles() throws FileNotFoundException, IOException, InvalidConfigurationException {
+	public static void initFiles() throws IOException, InvalidConfigurationException {
 		
 		if(!new File("plugins/Mafanation").exists()) {
 			new File("plugins/Mafanation").mkdir();
@@ -41,7 +41,7 @@ public class Files {
 		
 	}
 
-	private static void loadFiles() throws FileNotFoundException, IOException, InvalidConfigurationException {
+	private static void loadFiles() throws IOException, InvalidConfigurationException {
 		cfg.load(configFile);
 	}
 
@@ -51,7 +51,7 @@ public class Files {
 		if(!paramFile.exists()) {
 			FileUtils.copyInputStreamToFile(paramInputStream, paramFile);
 		}
-		((FileConfiguration)YamlConfiguration.loadConfiguration(paramFile)).load(paramFile);
+		YamlConfiguration.loadConfiguration(paramFile).load(paramFile);
 	}
 	
 }

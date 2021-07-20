@@ -20,7 +20,7 @@ public class AtomSplit implements Listener {
 
     public static ItemStack AtomSplit(Player player) {
         ItemStack skeletonSword = new ItemStack(Material.BOW);
-        ItemMeta skeletonMeta = (ItemMeta) skeletonSword.getItemMeta();
+        ItemMeta skeletonMeta = skeletonSword.getItemMeta();
         ArrayList<String> lore = new ArrayList<String>();
         skeletonMeta.setUnbreakable(true);
         skeletonMeta.setDisplayName(RarityType.DIAMOND.getLore() +  "AtomSplit");

@@ -5,9 +5,9 @@ import net.citizensnpcs.trait.SkinTrait;
 
 public class createSkin {
 
-    private String name;
-    private String signature;
-    private String data;
+    private final String name;
+    private final String signature;
+    private final String data;
 
     public createSkin(String name, String signature, String data) {
         this.name = name;

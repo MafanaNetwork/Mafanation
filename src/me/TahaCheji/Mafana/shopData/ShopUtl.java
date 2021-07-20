@@ -103,7 +103,7 @@ public class ShopUtl implements InventoryHolder {
         Gui.setItem(27,greystainedglass);
         Gui.setItem(18,greystainedglass);
         Gui.setItem(9,greystainedglass);
-
+        Main.shopUtl.add(this);
     }
 
     @Override

@@ -10,7 +10,7 @@ commands:
   Spawn:
   WeaponShop:
   OreShop:
-  FarmShop:
+  ResetVotes:
   SkeletonSword:
   ItemsGui:
   reboot:

@@ -38,7 +38,7 @@ public class Jumpers_Glock implements Listener {
         if(e.getItem().getItemMeta().getDisplayName() == null) {
             return;
         }
-        Player player = (Player) e.getPlayer();
+        Player player = e.getPlayer();
         if (!(player.getItemInHand().getItemMeta().getDisplayName().contains("Jumpers Glock"))) {
             return;
         }

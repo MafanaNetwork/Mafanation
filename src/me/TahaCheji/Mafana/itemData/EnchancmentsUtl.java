@@ -6,7 +6,7 @@ import me.TahaCheji.Mafana.Main;
 import me.TahaCheji.Mafana.dungeons.AquaDungeon.FounderDrowned;
 import me.TahaCheji.Mafana.stats.PlayerStats;
 import org.bukkit.*;
-import org.bukkit.craftbukkit.v1_16_R2.entity.CraftEntity;
+//import org.bukkit.craftbukkit.v1_17_R1.entity.CraftEntity;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -15,6 +15,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
@@ -305,7 +306,7 @@ public class EnchancmentsUtl implements Listener{
             return;
         }
         for (Entity entity : e.getPlayer().getNearbyEntities(5, 5, 5)) {
-            if (((CraftEntity) entity).getHandle() instanceof NPC) {
+            if (entity instanceof NPC) {
                 e.getPlayer().sendMessage("You are too close to npc to use the" + ChatColor.GOLD + " Fiery Ability");
                 e.getPlayer().playSound(e.getPlayer().getLocation(), Sound.ENTITY_VILLAGER_NO, 10, 10);
                 return;
@@ -339,7 +340,7 @@ public class EnchancmentsUtl implements Listener{
         double z = e.getEntity().getLocation().getZ();
 
         Particle.DustOptions dustOptions = new Particle.DustOptions(Color.fromRGB(100, 0, 0), 1);
-        com.gmail.filoghost.holograms.api.Hologram h = (com.gmail.filoghost.holograms.api.Hologram) HolographicDisplaysAPI.createHologram
+        com.gmail.filoghost.holograms.api.Hologram h = HolographicDisplaysAPI.createHologram
                 (Main.getInstance(), en.getLocation().add(0,2,0),  ChatColor.WHITE + "✧" + ChatColor.WHITE  + PlayerStats.getStrength(p) * .2 + ChatColor.WHITE + "✧" );
         Bukkit.getScheduler().runTaskLater(Main.getInstance(), () -> {
             h.delete();

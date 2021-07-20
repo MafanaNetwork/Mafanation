@@ -3,8 +3,6 @@ package me.TahaCheji.Mafana.playerData;
 import me.TahaCheji.Mafana.listeners.PlayerDeath;
 import me.TahaCheji.Mafana.utils.NBTUtils;
 import me.TahaCheji.Mafana.utils.removeHealth;
-import net.minecraft.server.v1_16_R2.PacketPlayOutEntityHeadRotation;
-import org.bukkit.block.Block;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -24,7 +22,7 @@ public class playerMobData implements Listener {
    static removeHealth health = new removeHealth();
 
     public static double getMobCollection(Player p, Entity entity) {
-        File playerData = new File("plugins/Mafanation/playerData/" + p.getUniqueId().toString() + "/playerMobData.yml");
+        File playerData = new File("plugins/Mafanation/playerData/" + p.getUniqueId() + "/playerMobData.yml");
         FileConfiguration pD = YamlConfiguration.loadConfiguration(playerData);
         try {
             pD.load(playerData);
@@ -41,7 +39,7 @@ public class playerMobData implements Listener {
     }
 
     public static void setMobCollection(Player p, Entity entity) throws IOException {
-        File playerData = new File("plugins/Mafanation/playerData/" + p.getUniqueId().toString() + "/playerMobData.yml");
+        File playerData = new File("plugins/Mafanation/playerData/" + p.getUniqueId() + "/playerMobData.yml");
         FileConfiguration pD = YamlConfiguration.loadConfiguration(playerData);
         try {
             pD.load(playerData);
@@ -55,7 +53,7 @@ public class playerMobData implements Listener {
     }
 
     public static double getAdvancedMobCollection(Player p, Entity entity) {
-        File playerData = new File("plugins/Mafanation/playerData/" + p.getUniqueId().toString() + "/playerMobData.yml");
+        File playerData = new File("plugins/Mafanation/playerData/" + p.getUniqueId() + "/playerMobData.yml");
         FileConfiguration pD = YamlConfiguration.loadConfiguration(playerData);
         try {
             pD.load(playerData);
@@ -73,7 +71,7 @@ public class playerMobData implements Listener {
     }
 
     public static void setAdvancedMobCollection(Player p, Entity entity) throws IOException {
-        File playerData = new File("plugins/Mafanation/playerData/" + p.getUniqueId().toString() + "/playerMobData.yml");
+        File playerData = new File("plugins/Mafanation/playerData/" + p.getUniqueId() + "/playerMobData.yml");
         FileConfiguration pD = YamlConfiguration.loadConfiguration(playerData);
         try {
             pD.load(playerData);
@@ -87,7 +85,7 @@ public class playerMobData implements Listener {
     }
 
     public static Double getKillsTotalAmount(Player p) throws IOException {
-        File playerData = new File("plugins/Mafanation/playerData/" + p.getUniqueId().toString() + "/playerMobData.yml");
+        File playerData = new File("plugins/Mafanation/playerData/" + p.getUniqueId() + "/playerMobData.yml");
         FileConfiguration pD = YamlConfiguration.loadConfiguration(playerData);
         try {
             pD.load(playerData);
@@ -101,7 +99,7 @@ public class playerMobData implements Listener {
     }
 
     public static void addKillsTotalAmount(Player p) throws IOException {
-        File playerData = new File("plugins/Mafanation/playerData/" + p.getUniqueId().toString() + "/playerMobData.yml");
+        File playerData = new File("plugins/Mafanation/playerData/" + p.getUniqueId() + "/playerMobData.yml");
         FileConfiguration pD = YamlConfiguration.loadConfiguration(playerData);
         try {
             pD.load(playerData);
@@ -114,7 +112,7 @@ public class playerMobData implements Listener {
 
     }
     public static Double getDeathsTotalAmount(Player p) throws IOException {
-        File playerData = new File("plugins/Mafanation/playerData/" + p.getUniqueId().toString() + "/playerMobData.yml");
+        File playerData = new File("plugins/Mafanation/playerData/" + p.getUniqueId() + "/playerMobData.yml");
         FileConfiguration pD = YamlConfiguration.loadConfiguration(playerData);
         try {
             pD.load(playerData);
@@ -128,7 +126,7 @@ public class playerMobData implements Listener {
     }
 
     public static void addDeathsTotalAmount(Player p) throws IOException {
-        File playerData = new File("plugins/Mafanation/playerData/" + p.getUniqueId().toString() + "/playerMobData.yml");
+        File playerData = new File("plugins/Mafanation/playerData/" + p.getUniqueId() + "/playerMobData.yml");
         FileConfiguration pD = YamlConfiguration.loadConfiguration(playerData);
         try {
             pD.load(playerData);

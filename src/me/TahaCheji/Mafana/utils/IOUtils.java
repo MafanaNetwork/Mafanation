@@ -12,7 +12,7 @@ public class IOUtils {
 
   public static void closeQuietly(InputStream paramCloseable) {
 	  try {
-		  if ((Closeable) paramCloseable != null)
+		  if (paramCloseable != null)
 			  paramCloseable.close(); 
 	    	} catch (IOException iOException) {
 	    		
@@ -21,7 +21,7 @@ public class IOUtils {
 	  
   public static void closeQuietly(OutputStream paramCloseable) {
 	  try {
-		  if ((Closeable) paramCloseable != null)
+		  if (paramCloseable != null)
 			  paramCloseable.close(); 
 	    	} catch (IOException iOException) {
 	    		

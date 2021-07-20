@@ -16,7 +16,7 @@ import java.io.IOException;
 public class playerTalkedTo implements Listener {
     //-talked to npcs
     public static void addTalkedTo(Player p, NPC npc) throws IOException {
-        File playerData = new File("plugins/Mafanation/playerData/" + p.getUniqueId().toString() + "/playerTalkedTo.yml");
+        File playerData = new File("plugins/Mafanation/playerData/" + p.getUniqueId() + "/playerTalkedTo.yml");
         FileConfiguration pD = YamlConfiguration.loadConfiguration(playerData);
         try {
             pD.load(playerData);
@@ -33,7 +33,7 @@ public class playerTalkedTo implements Listener {
 
     }
     public static void removeTalkedTo(Player p, NPC npc) throws IOException {
-        File playerData = new File("plugins/Mafanation/playerData/" + p.getUniqueId().toString() + "/playerTalkedTo.yml");
+        File playerData = new File("plugins/Mafanation/playerData/" + p.getUniqueId() + "/playerTalkedTo.yml");
         FileConfiguration pD = YamlConfiguration.loadConfiguration(playerData);
         try {
             pD.load(playerData);
@@ -50,7 +50,7 @@ public class playerTalkedTo implements Listener {
     }
 
     public static Boolean hasTalkedTo(Player p, NPC npc) throws IOException {
-        File playerData = new File("plugins/Mafanation/playerData/" + p.getUniqueId().toString() + "/playerTalkedTo.yml");
+        File playerData = new File("plugins/Mafanation/playerData/" + p.getUniqueId() + "/playerTalkedTo.yml");
         FileConfiguration pD = YamlConfiguration.loadConfiguration(playerData);
         try {
             pD.load(playerData);

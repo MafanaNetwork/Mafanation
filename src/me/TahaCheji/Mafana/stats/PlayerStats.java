@@ -88,7 +88,7 @@ public class PlayerStats {
     }
 
     public static double  getHealthWithoutBase(Player p) {
-        File playerData = new File("plugins/Mafanation/playerData/" + p.getUniqueId().toString() + "/data.yml");
+        File playerData = new File("plugins/Mafanation/playerData/" + p.getUniqueId() + "/data.yml");
         FileConfiguration pD = YamlConfiguration.loadConfiguration(playerData);
         try {
             pD.load(playerData);
@@ -103,6 +103,8 @@ public class PlayerStats {
             if(is != null && is.hasItemMeta() && is.getItemMeta().hasLore()) {
                 health = health + NBTUtils.getDouble(is, "baseHealth") + NBTUtils.getDouble(is, "reforgeHealth");
                 p.setHealthScale(40);
+               p.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(health);
+               p.setHealth(health);
             }
         }
 
@@ -115,7 +117,7 @@ public class PlayerStats {
     }
 
     public static double  getTotalHealth(Player p) {
-        File playerData = new File("plugins/Mafanation/playerData/" + p.getUniqueId().toString() + "/data.yml");
+        File playerData = new File("plugins/Mafanation/playerData/" + p.getUniqueId() + "/data.yml");
         FileConfiguration pD = YamlConfiguration.loadConfiguration(playerData);
 
         try {
@@ -131,18 +133,22 @@ public class PlayerStats {
             if(is != null && is.hasItemMeta() && is.getItemMeta().hasLore()) {
                 health = health + NBTUtils.getDouble(is, "baseHealth") + NBTUtils.getDouble(is, "reforgeHealth");
                 p.setHealthScale(40);
+                p.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(health);
+                p.setHealth(health);
             }
         }
         ItemStack iih = p.getItemInHand();
         if(iih != null && iih.hasItemMeta() && iih.getItemMeta().hasLore()) {
             health = health + NBTUtils.getDouble(iih, "baseHealth") + NBTUtils.getDouble(iih, "reforgeHealth");
             p.setHealthScale(40);
+            p.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(health);
+            p.setHealth(health);
         }
         return health;
     }
     public static double  getTotalIntelligence(Player p) {
 
-        File playerData = new File("plugins/Mafanation/playerData/" + p.getUniqueId().toString() + "/data.yml");
+        File playerData = new File("plugins/Mafanation/playerData/" + p.getUniqueId() + "/data.yml");
         FileConfiguration pD = YamlConfiguration.loadConfiguration(playerData);
 
         try {
@@ -167,7 +173,7 @@ public class PlayerStats {
     }
 
     public static double getStrength(Player p) {
-        File playerData = new File("plugins/Mafanation/playerData/" + p.getUniqueId().toString() + "/data.yml");
+        File playerData = new File("plugins/Mafanation/playerData/" + p.getUniqueId() + "/data.yml");
         FileConfiguration pD = YamlConfiguration.loadConfiguration(playerData);
         try {
             pD.load(playerData);
@@ -190,7 +196,7 @@ public class PlayerStats {
 
     public static double getSpeed(Player p) {
 
-        File playerData = new File("plugins/Mafanation/playerData/" + p.getUniqueId().toString() + "/data.yml");
+        File playerData = new File("plugins/Mafanation/playerData/" + p.getUniqueId() + "/data.yml");
         FileConfiguration pD = YamlConfiguration.loadConfiguration(playerData);
 
         try {

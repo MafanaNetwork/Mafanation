@@ -20,7 +20,7 @@ public class OreMaster implements Listener {
 
     public static ItemStack Diamond() {
         ItemStack Diamond = new ItemStack(Material.DIAMOND);
-        ItemMeta DiamondMeta = (ItemMeta) Diamond.getItemMeta();
+        ItemMeta DiamondMeta = Diamond.getItemMeta();
         DiamondMeta.setDisplayName(ChatColor.AQUA + "Diamond");
         ArrayList<String> lore11 = new ArrayList<String>();
         lore11.add("");
@@ -33,7 +33,7 @@ public class OreMaster implements Listener {
 
     public static ItemStack Iron() {
         ItemStack Iron = new ItemStack(Material.IRON_INGOT);
-        ItemMeta IronMeta = (ItemMeta) Iron.getItemMeta();
+        ItemMeta IronMeta = Iron.getItemMeta();
         IronMeta.setDisplayName(ChatColor.AQUA + "Iron Ingot");
         ArrayList<String> lore22 = new ArrayList<String>();
         lore22.add("");
@@ -46,7 +46,7 @@ public class OreMaster implements Listener {
 
     public static ItemStack Gold() {
         ItemStack Gold = new ItemStack(Material.GOLD_INGOT);
-        ItemMeta GoldMeta = (ItemMeta) Gold.getItemMeta();
+        ItemMeta GoldMeta = Gold.getItemMeta();
         GoldMeta.setDisplayName(ChatColor.AQUA + "Gold");
         ArrayList<String> lore33 = new ArrayList<String>();
         lore33.add("");
@@ -59,7 +59,7 @@ public class OreMaster implements Listener {
 
     public static ItemStack Lapis() {
         ItemStack Lapis = new ItemStack(Material.LAPIS_LAZULI);
-        ItemMeta LapisMeta = (ItemMeta) Lapis.getItemMeta();
+        ItemMeta LapisMeta = Lapis.getItemMeta();
         LapisMeta.setDisplayName(ChatColor.AQUA + "Lapis");
         ArrayList<String> lore44 = new ArrayList<String>();
         lore44.add("");
@@ -71,7 +71,7 @@ public class OreMaster implements Listener {
 
     public static ItemStack RedStuff() {
         ItemStack RedStuff = new ItemStack(Material.REDSTONE);
-        ItemMeta RedStuffMeta = (ItemMeta) RedStuff.getItemMeta();
+        ItemMeta RedStuffMeta = RedStuff.getItemMeta();
         RedStuffMeta.setDisplayName(ChatColor.AQUA + "RedStuff");
         ArrayList<String> lore55 = new ArrayList<String>();
         lore55.add("");
@@ -83,7 +83,7 @@ public class OreMaster implements Listener {
 
     public static ItemStack EMERALD() {
         ItemStack EMERALD = new ItemStack(Material.EMERALD);
-        ItemMeta EMERALDMeta = (ItemMeta) EMERALD.getItemMeta();
+        ItemMeta EMERALDMeta = EMERALD.getItemMeta();
         EMERALDMeta.setDisplayName(ChatColor.AQUA + "Emerald");
         ArrayList<String> lore55 = new ArrayList<String>();
         lore55.add("");

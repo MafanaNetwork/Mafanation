@@ -18,7 +18,7 @@ public class ReservoirCap implements Listener {
 
     public static ItemStack ReservoirCap(Player player) {
         ItemStack ReservoirCap = new ItemStack(Material.LEATHER_HELMET);
-        ItemMeta ReservoirCapMeta = (ItemMeta) ReservoirCap.getItemMeta();
+        ItemMeta ReservoirCapMeta = ReservoirCap.getItemMeta();
         ReservoirCapMeta.setDisplayName(RarityType.WOOD.getLore() + " ReservoirCap");
         ReservoirCapMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
         ReservoirCapMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);

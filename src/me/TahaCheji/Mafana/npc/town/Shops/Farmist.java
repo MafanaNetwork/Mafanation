@@ -26,7 +26,7 @@ public class Farmist implements Listener {
 
     public static ItemStack Carrot() {
         ItemStack Bread = new ItemStack(Material.CARROT);
-        ItemMeta BreadMeta = (ItemMeta) Bread.getItemMeta();
+        ItemMeta BreadMeta = Bread.getItemMeta();
         NamespacedKey key = new NamespacedKey(plugin, Main.getInstance().getDescription().getName());
         Glow glow = new Glow(key);
         BreadMeta.setDisplayName(ChatColor.GREEN + "Carrot");
@@ -40,7 +40,7 @@ public class Farmist implements Listener {
     }
     public static ItemStack Berries() {
         ItemStack Bread = new ItemStack(Material.SWEET_BERRIES);
-        ItemMeta BreadMeta = (ItemMeta) Bread.getItemMeta();
+        ItemMeta BreadMeta = Bread.getItemMeta();
         NamespacedKey key = new NamespacedKey(plugin, Main.getInstance().getDescription().getName());
         Glow glow = new Glow(key);
         BreadMeta.setDisplayName(ChatColor.GREEN + "Berries");
@@ -54,7 +54,7 @@ public class Farmist implements Listener {
     }
     public static ItemStack Potato() {
         ItemStack Bread = new ItemStack(Material.POTATO);
-        ItemMeta BreadMeta = (ItemMeta) Bread.getItemMeta();
+        ItemMeta BreadMeta = Bread.getItemMeta();
         NamespacedKey key = new NamespacedKey(plugin, Main.getInstance().getDescription().getName());
         Glow glow = new Glow(key);
         BreadMeta.setDisplayName(ChatColor.GREEN + "Potato");
@@ -68,7 +68,7 @@ public class Farmist implements Listener {
     }
     public static ItemStack BeetRoot() {
         ItemStack Bread = new ItemStack(Material.CARROT);
-        ItemMeta BreadMeta = (ItemMeta) Bread.getItemMeta();
+        ItemMeta BreadMeta = Bread.getItemMeta();
         NamespacedKey key = new NamespacedKey(plugin, Main.getInstance().getDescription().getName());
         Glow glow = new Glow(key);
         BreadMeta.setDisplayName(ChatColor.GREEN + "BeetRoot");
@@ -82,7 +82,7 @@ public class Farmist implements Listener {
     }
     public static ItemStack Apple() {
         ItemStack Bread = new ItemStack(Material.APPLE);
-        ItemMeta BreadMeta = (ItemMeta) Bread.getItemMeta();
+        ItemMeta BreadMeta = Bread.getItemMeta();
         NamespacedKey key = new NamespacedKey(plugin, Main.getInstance().getDescription().getName());
         Glow glow = new Glow(key);
         BreadMeta.setDisplayName(ChatColor.GREEN + "Apple");

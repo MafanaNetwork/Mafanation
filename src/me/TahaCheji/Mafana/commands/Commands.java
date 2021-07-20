@@ -1,23 +1,17 @@
 package me.TahaCheji.Mafana.commands;
 
 import me.TahaCheji.Mafana.Main;
-import me.TahaCheji.Mafana.area.SkeletonHills.Mobs.MeatySkeleton;
 import me.TahaCheji.Mafana.crafting.CraftingGui;
-import me.TahaCheji.Mafana.crafting.RecipeGui;
 import me.TahaCheji.Mafana.gameItems.Weapons.GoldenLife;
-import me.TahaCheji.Mafana.gameItems.items.MagicCookie;
-import me.TahaCheji.Mafana.gameItems.items.MidasStand;
 import me.TahaCheji.Mafana.gui.itemsCommandGui.ItemsGui;
 
 import me.TahaCheji.Mafana.itemData.RarityType;
-import me.TahaCheji.Mafana.listeners.PlayerDeath;
-import me.TahaCheji.Mafana.mobData.*;
 import me.TahaCheji.Mafana.game.Title;
+import me.TahaCheji.Mafana.npc.town.GuildNpc.Jen;
 import me.TahaCheji.Mafana.playerData.playerInfo.playerCoinSpent;
 import me.TahaCheji.Mafana.playerData.playerSellHistory;
-import me.TahaCheji.Mafana.shopData.ShopUtl;
-import me.TahaCheji.Mafana.shops.BakerShop;
 import me.TahaCheji.Mafana.utils.NBTUtils;
+import me.TahaCheji.Mafana.voting.MainVote;
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.ComponentBuilder;
 import net.md_5.bungee.api.chat.HoverEvent;
@@ -29,7 +23,6 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.*;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.scheduler.BukkitRunnable;
 
 import java.io.IOException;
 
@@ -68,12 +61,17 @@ public class Commands implements CommandExecutor {
             //OPEN GUI
             return true;
         }
-        if (label.equalsIgnoreCase("farmshop")) {
+        if (label.equalsIgnoreCase("ResetVotes")) {
             if (!(sender instanceof Player)) {
                 sender.sendMessage("You cannot do this!");
                 return true;
             }
             Player player = (Player) sender;
+            try {
+                new MainVote().setWinner();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             return true;
         }
         if (label.equalsIgnoreCase("mobTest")) {
@@ -82,7 +80,7 @@ public class Commands implements CommandExecutor {
                 return true;
             }
             Player player = (Player) sender;
-            new MeatySkeleton().MeatySkeleton(player);
+            new GoldenLife().getGoldenLifeRecipe();
             return true;
         }
         if (label.equalsIgnoreCase("InventoryTest")) {

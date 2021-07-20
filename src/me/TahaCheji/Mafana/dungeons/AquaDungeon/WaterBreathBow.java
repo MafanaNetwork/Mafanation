@@ -29,7 +29,7 @@ public class WaterBreathBow implements Listener {
 
     public static ItemStack WaterBreathBow(Player player) {
         ItemStack WaterBreathBow = new ItemStack(Material.BOW);
-        ItemMeta WaterBreathBowMeta = (ItemMeta) WaterBreathBow.getItemMeta();
+        ItemMeta WaterBreathBowMeta = WaterBreathBow.getItemMeta();
         WaterBreathBowMeta.setDisplayName(RarityType.WOOD.getLore() + " WaterBreathBow");
         WaterBreathBowMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
         WaterBreathBowMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);

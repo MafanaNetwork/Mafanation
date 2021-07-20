@@ -22,8 +22,8 @@ public class RecipeGui implements InventoryHolder {
 
     public Inventory GUI;
 
-    public RecipeGui(Player player, ItemStack item) {
-        GUI = Bukkit.createInventory(null, 27, ChatColor.GRAY + "" + ChatColor.BOLD + "test");
+    public RecipeGui(MasterTable table) {
+        GUI = Bukkit.createInventory(null, 27, ChatColor.GRAY + "" + ChatColor.BOLD + table.getFinalItem().getItemMeta().getDisplayName() + " Recipe");
         ArrayList<String> lore = new ArrayList<String>();
 
         ItemStack closeShop = new ItemStack(Material.BARRIER);
@@ -34,7 +34,7 @@ public class RecipeGui implements InventoryHolder {
 
         ItemStack newItem = new ItemStack(Material.GRAY_STAINED_GLASS_PANE);
         ItemMeta newmeta = newItem.getItemMeta();
-        newmeta.setDisplayName(ChatColor.GRAY + " ");
+        newmeta.setDisplayName(ChatColor.GRAY + "");
         newmeta.setLore(lore);
         newItem.setItemMeta(newmeta);
         for (int emptySlot = 0; emptySlot < GUI.getSize(); emptySlot++) {
@@ -43,31 +43,19 @@ public class RecipeGui implements InventoryHolder {
             }
         }
 
-        File playerData = new File("plugins/Mafanation/Weapons/" + item.getItemMeta().getDisplayName() + "/recipe.yml");
-        FileConfiguration pD = YamlConfiguration.loadConfiguration(playerData);
-        try {
-            pD.load(playerData);
-        } catch (IOException | InvalidConfigurationException e) {
-            e.printStackTrace();
-        }
+        GUI.setItem(1, table.getCheckSlot1());
+        GUI.setItem(2, table.getCheckSlot2());
+        GUI.setItem(3, table.getCheckSlot3());
 
-        ItemStack test = pD.getItemStack("slot1");
+        GUI.setItem(10, table.getCheckSlot4());
+        GUI.setItem(11, table.getCheckSlot5());
+        GUI.setItem(12, table.getCheckSlot6());
 
+        GUI.setItem(19, table.getCheckSlot7());
+        GUI.setItem(20, table.getCheckSlot8());
+        GUI.setItem(21, table.getCheckSlot9());
 
-
-        GUI.setItem(1, test);
-        GUI.setItem(2, null);
-        GUI.setItem(3, null);
-
-        GUI.setItem(10, null);
-        GUI.setItem(11, null);
-        GUI.setItem(12, null);
-
-        GUI.setItem(19, null);
-        GUI.setItem(20, null);
-        GUI.setItem(21, null);
-
-        GUI.setItem(14, item);
+        GUI.setItem(14, table.getFinalItem());
 
 
     }

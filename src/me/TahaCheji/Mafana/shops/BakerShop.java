@@ -1,5 +1,6 @@
 package me.TahaCheji.Mafana.shops;
 
+import me.TahaCheji.Mafana.Main;
 import me.TahaCheji.Mafana.gameItems.items.BoneShard;
 import me.TahaCheji.Mafana.gameItems.items.MagicCookie;
 import me.TahaCheji.Mafana.gameItems.items.MidasStand;
@@ -19,11 +20,6 @@ public class BakerShop implements Listener {
         return shop;
     }
 
-    @EventHandler
-    public void clickEvent(InventoryClickEvent e) throws IOException {
-        Player player = (Player) e.getWhoClicked();
-        bakersCock(player).getClickedItem(e);
-    }
 
 
 }

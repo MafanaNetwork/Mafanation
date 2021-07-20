@@ -4,8 +4,8 @@ import me.TahaCheji.Mafana.Main;
 
 public class TradeRequest {
 
-    private TradeManager tradeManager;
-    private Main plugin;
+    private final TradeManager tradeManager;
+    private final Main plugin;
 
     TradePlayer sender;
     TradePlayer target;

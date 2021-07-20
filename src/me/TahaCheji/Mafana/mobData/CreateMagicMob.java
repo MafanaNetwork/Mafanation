@@ -1,16 +1,12 @@
 package me.TahaCheji.Mafana.mobData;
 
 import me.TahaCheji.Mafana.utils.NBTUtils;
-import net.minecraft.server.v1_16_R2.*;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.attribute.Attribute;
-import org.bukkit.craftbukkit.v1_16_R2.CraftWorld;
-import org.bukkit.craftbukkit.v1_16_R2.entity.CraftEntity;
-import org.bukkit.craftbukkit.v1_16_R2.inventory.CraftItemStack;
+
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.EntityEquipment;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
@@ -18,8 +14,10 @@ import org.bukkit.inventory.ItemStack;
 import java.util.Arrays;
 import java.util.List;
 
-public class CreateMagicMob extends EntityMonster {
+public class CreateMagicMob  {
+    /*
     private final String name;
+    private EntityType mobType;
     private final double spawnChance;
     private final int strength;
     private final int defense;
@@ -30,7 +28,7 @@ public class CreateMagicMob extends EntityMonster {
     private PathfinderGoal goals;
     private final List<LootItem> lootTable;
 
-    public CreateMagicMob(EntityTypes<? extends EntityMonster> mob, World world, Location loc, String name, double spawnChance, double maxHealth, int strength, int defense, int damage, int speed, ItemStack mainItem, ItemStack[] armor, LootItem... lootTable) {
+    public CreateMagicMob(EntityTypes<? extends EntityMonster> mob, EntityType type, World world, Location loc, String name, double spawnChance, double maxHealth, int strength, int defense, int damage, int speed, ItemStack mainItem, ItemStack[] armor, LootItem... lootTable) {
         super(mob, world);
         this.name = name;
         this.spawnChance = spawnChance;
@@ -71,9 +69,9 @@ public class CreateMagicMob extends EntityMonster {
         NBTUtils.setEntityString(entity, "MobName", name);
     }
 
-    public void tryDropLoot(Location location) {
+    public void tryDropLoot(Location location, Player player) {
         for (LootItem item : lootTable) {
-            item.tryDropItem(location);
+            item.tryDropItem(location, player);
         }
     }
 
@@ -108,6 +106,8 @@ public class CreateMagicMob extends EntityMonster {
     public ItemStack[] getArmor() {
         return armor;
     }
+
+     */
 
 
 

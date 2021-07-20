@@ -18,7 +18,7 @@ public class playerInventoryData implements Listener {
 
     //-players inventory
     public static void saveInventory(Player p) throws IOException {
-        File playerData = new File("plugins/Mafanation/playerData/" + p.getUniqueId().toString() + "/playerInventory.yml");
+        File playerData = new File("plugins/Mafanation/playerData/" + p.getUniqueId() + "/playerInventory.yml");
         FileConfiguration pD = YamlConfiguration.loadConfiguration(playerData);
         if(!(p.getInventory().getContents() == null)) {
             pD.set("inventory.armor", p.getInventory().getArmorContents());
@@ -31,7 +31,7 @@ public class playerInventoryData implements Listener {
 
     @SuppressWarnings("unchecked")
     public static void restoreInventory(Player p) throws IOException {
-        File playerData = new File("plugins/Mafanation/playerData/" + p.getUniqueId().toString() + "/playerInventory.yml");
+        File playerData = new File("plugins/Mafanation/playerData/" + p.getUniqueId() + "/playerInventory.yml");
         FileConfiguration pD = YamlConfiguration.loadConfiguration(playerData);
         if(pD.get("inventory.armor") == null) {
             return;
@@ -45,9 +45,5 @@ public class playerInventoryData implements Listener {
     @EventHandler
     public void onQuit(PlayerQuitEvent e) throws IOException {
         saveInventory(e.getPlayer());
-    }
-    @EventHandler
-    public void onJoin(PlayerJoinEvent e) throws IOException {
-        restoreInventory(e.getPlayer());
     }
 }

@@ -22,7 +22,6 @@ lobby-point:
   y: 64
   z: 0
   world: "world"
-
 host: localhost
 port: 3306
 database: server

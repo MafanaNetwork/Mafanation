@@ -1,6 +1,4 @@
 package me.TahaCheji.Mafana.mobData;
-
-import net.minecraft.server.v1_16_R2.ArgumentRotation;
 import org.bukkit.Location;
 import org.bukkit.Rotation;
 import org.bukkit.entity.ArmorStand;

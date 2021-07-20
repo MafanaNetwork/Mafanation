@@ -5,12 +5,7 @@ import de.tr7zw.nbtapi.NBTEntity;
 import de.tr7zw.nbtapi.NBTItem;
 import me.TahaCheji.Mafana.Main;
 import me.TahaCheji.Mafana.utils.NBTUtils;
-import net.minecraft.server.v1_16_R2.ItemArmor;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.craftbukkit.v1_16_R2.inventory.CraftItemStack;
+import org.bukkit.*;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -27,7 +22,7 @@ public class LootItem {
     private final ItemStack item1;
     private int min = 1, max = 1;
     private final double dropRate;
-    private Random randomiser = new Random();
+    private final Random randomiser = new Random();
 
     public LootItem(ItemStack item, double dropRate)  {
         this.item1 = item;
@@ -41,7 +36,7 @@ public class LootItem {
         this.dropRate = dropRate;
     }
 
-    public void tryDropItem(Location loc) {
+    public void tryDropItem(Location loc, Player player) {
         if (Math.random() * 101 > dropRate) {
             System.out.println(item1.getItemMeta().getDisplayName());
             return;
@@ -61,6 +56,8 @@ public class LootItem {
         as.setRightArmPose(new EulerAngle(80f, 90f, 15f));
         NBTUtils.setEntityString(as, "LootItem", "ArmorStand");
         Bukkit.getScheduler().scheduleAsyncRepeatingTask(Main.getInstance(), new ArmorstandAnimation(as), 0, 1);
+        player.sendMessage(ChatColor.GOLD + "Mob Drop: " + item.getItemMeta().getDisplayName() +  ChatColor.DARK_GRAY + " x" + amount);
+        player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 10, 10);
         if(NBTUtils.getString(item, "ItemType").contains("Boots")) {
             as.getEquipment().setBoots(item);
             return;

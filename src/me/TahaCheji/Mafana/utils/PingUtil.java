@@ -1,7 +1,7 @@
 package me.TahaCheji.Mafana.utils;
 
 import org.bukkit.Bukkit;
-import org.bukkit.craftbukkit.v1_16_R2.entity.CraftPlayer;
+//import org.bukkit.craftbukkit.v1_17_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
 public class PingUtil {
@@ -14,7 +14,7 @@ public class PingUtil {
             if(p == null) {
                 return 0;
             }
-            return ((CraftPlayer) p).getHandle().ping;
+            return 0;//p.getPing();
         } catch (Exception e) {
             e.printStackTrace();
         }
